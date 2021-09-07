@@ -1,15 +1,19 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+TODO: Project code for Hillside 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+1. Read https://reactnative.dev/docs/environment-setup 
+2. React Native Team recommends using the EXPO CLI tool -- for that, you'll need to ensure that your version of node.js is > v12 LTS. 
+3. Start by installing 
+
+Requirements to run project:
+1.	XCode (Available from the macOS app store. This is a BIG download.  )
+2.	npm (I suggest using nvm to manage multiple versions)
+3.	Visual Studio Code is the IDE I'm using for developing this application.  I also recommend adding the *React Native Tools* extension
+
+# React Native Demo App
+Attached is a React Native demo app which should give you a sense of numerous example situations we might find ourselves in as we're coding our application.  It can be found at `demo_app/MyTestApp`.   To run it, 
 
 # Contribute
 TODO: Explain how other users and developers can contribute to make your code better. 

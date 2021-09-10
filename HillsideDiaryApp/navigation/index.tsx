@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome, Foundation, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,10 +14,12 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import DiaryScreen from '../screens/DiaryScreen';
+import SkillScreen from '../screens/SkillScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import AboutScreen from '../screens/AboutScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -55,41 +57,57 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
+  const iconSize = 30;
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Diary"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
+        name="Diary"
+        component={DiaryScreen}
+        options={({ navigation }: RootTabScreenProps<'Diary'>) => ({
+          title: 'Diary',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <AntDesign name="book" color={color} size={iconSize} />,
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Skills"
+        component={SkillScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Skills',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <Foundation name="social-skillshare" color={color} size={iconSize} />,
+        }}
+      />
+       <BottomTab.Screen
+        name="Record"
+        component={DiaryScreen}
+        options={{
+          tabBarLabel: () => null,
+          headerShown: false,
+          tabBarIcon: ({ color }) => <Feather name="edit-2" color={color} size={iconSize+5} />,
+        }}
+      />
+       <BottomTab.Screen
+        name="About"
+        component={AboutScreen}
+        options={{
+          title: 'About',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <Feather name="info" color={color} size={iconSize} />,
+        }}
+      />
+       <BottomTab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          title: 'Profile',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <Ionicons name="ios-person-outline" color={color} size={iconSize} />,
         }}
       />
     </BottomTab.Navigator>

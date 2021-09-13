@@ -36,3 +36,35 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
 >;
+
+export type DiaryEntity = {
+  id: string;
+  time: string;
+  month: number;
+  day: number;
+  year: number;
+  sudScore: number;
+  skills: [Skill];
+  targets: [Target];
+  emotions: [Emotion];
+  note: string;
+}
+
+export type Skill = {
+  id: number,
+  name: string,
+  value: string,
+}
+
+export type Emotion = {
+  id: number,
+  name: string,
+  value: string
+}
+
+export type Target = {
+  id: number,
+  name: string,
+  value: string
+}
+

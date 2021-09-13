@@ -1,12 +1,21 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar } from 'react-native';
 import { Text, View } from '../components/Themed';
 
 export default function AboutScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hillside Information Goes Here</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity
+              style={styles.button}
+              onPress={() => console.log('Terms of Use')}>
+              <Text>Terms of Use</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+              style={styles.button}
+              onPress={() => console.log('Privacy Policy')}>
+              <Text>Privacy Policy</Text>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
@@ -14,15 +23,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+  button:{
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+    width: '98%',
+    height: '10%',
+    margin: 4,
+    borderStyle: 'solid',
+    borderColor: 'grey',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: 'white',
+    paddingLeft: 15,
   },
 });

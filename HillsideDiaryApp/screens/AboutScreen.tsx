@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, } from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Constants from 'expo-constants';
 import Accordion from 'react-native-collapsible/Accordion';
 
+//Dummy Content Text
 const BACON_IPSUM =
   'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
 
+//Hardcoded Accordion menu titles and content
 const CONTENT = [
   {
     title: 'Terms of Use',
@@ -27,18 +29,21 @@ class AccordionView extends React.Component {
     activeSections: [],
   };
 
+  //Controls which menu item is currently expanded
   setSections = (sections: any) => {
     this.setState({
       activeSections: sections.includes(undefined) ? [] : sections,
     });
   };
 
+  //Renders Accordion menu item header
   renderHeader = (section: any, _: any, isActive: boolean) => {
     return (
       <Text style={styles.headerText}>{section.title}</Text>
     );
   };
 
+  //Renders Accordion menu item content
   renderContent(section: any, _: any, isActive: boolean) {
     return (
       <Text style={styles.content}>{section.content}</Text>
@@ -48,8 +53,9 @@ class AccordionView extends React.Component {
   render() {
     const { activeSections } = this.state;
 
+    //Accordion Menu
     return (
-      <View style={styles.container}>
+      <View>
         <ScrollView>
           <Accordion
             activeSections={activeSections}
@@ -69,6 +75,8 @@ class AccordionView extends React.Component {
 export default function AboutScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
+      <Text style={styles.logoText}>HILLSIDE</Text>
       <AccordionView/>
     </SafeAreaView>
   );
@@ -77,20 +85,10 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    justifyContent: 'flex-end',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-  },
-  button:{
-    justifyContent: 'center',
-    width: '98%',
-    height: '10%',
-    margin: 4,
-    borderStyle: 'solid',
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 5,
+    paddingBottom: 50,
     backgroundColor: 'white',
-    paddingLeft: 15,
   },
   headerText: {
     width: '90%',
@@ -107,5 +105,16 @@ const styles = StyleSheet.create({
   content: {
     margin: 10,
     fontSize: 14,
+  },
+  logo: {
+    width: 141,
+    height: 141,
+    bottom: '30%',
+    alignSelf: 'center',
+  },
+  logoText: {
+    alignSelf: 'center',
+    bottom: '30%',
+    fontSize: 24,
   }
 });

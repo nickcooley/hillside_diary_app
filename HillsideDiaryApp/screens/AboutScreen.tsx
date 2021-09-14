@@ -9,24 +9,16 @@ const BACON_IPSUM =
 
 const CONTENT = [
   {
-    title: 'First',
+    title: 'Terms of Use',
     content: BACON_IPSUM,
   },
   {
-    title: 'Second',
+    title: 'Privacy Policy',
     content: BACON_IPSUM,
   },
   {
-    title: 'Third',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Fourth',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Fifth',
-    content: BACON_IPSUM,
+    title: 'Our Mission',
+    content: 'Since our beginning in 1888, Hillside’s mission has been to help children and families thrive by providing outstanding residential and community mental health services. Our Residential Program, Treatment Foster Care Program, Community Intervention Program, and Day Treatment and Intensive Outpatient all keep focus on the strengths of our children and therefore encourage the growth and improvement they need to become future self-sustaining citizens.',
   },
 ];
 
@@ -49,7 +41,7 @@ class AccordionView extends React.Component {
 
   renderContent(section: any, _: any, isActive: boolean) {
     return (
-      <Text>{section.content}</Text>
+      <Text style={styles.content}>{section.content}</Text>
     );
   }
 
@@ -101,8 +93,19 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   headerText: {
-    textAlign: 'center',
+    width: '90%',
     fontSize: 20,
     fontWeight: '500',
+    borderStyle: 'solid',
+    borderColor: 'grey',
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 4,
+    marginHorizontal: 10,
+    paddingLeft: 15,
   },
+  content: {
+    margin: 10,
+    fontSize: 14,
+  }
 });

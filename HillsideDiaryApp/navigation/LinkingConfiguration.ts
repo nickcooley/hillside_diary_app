@@ -18,10 +18,10 @@ const linking: LinkingOptions<RootStackParamList> = {
         screens: {
           Diary: {},
           Skills: {},
-          Record: {
+          Recording: {
             screens: {
-              Record: 'record',
-              ModalScreen: 'modal'
+              RecordFirst: 'recordFirst',
+              RecordSecond: 'recordSecond'
             }
           },
           About: {},

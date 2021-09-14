@@ -49,3 +49,35 @@ export type RecordingStackScreenProps<Screen extends keyof RecordingStackParamLi
 RecordingStackParamList,
   Screen
 >;
+
+export type DiaryEntity = {
+  id: string;
+  time: string;
+  month: number;
+  day: number;
+  year: number;
+  sudScore: number;
+  skills: [Skill];
+  targets: [Target];
+  emotions: [Emotion];
+  note: string;
+}
+
+export type Skill = {
+  id: number,
+  name: string,
+  value: string,
+}
+
+export type Emotion = {
+  id: number,
+  name: string,
+  value: string
+}
+
+export type Target = {
+  id: number,
+  name: string,
+  value: string
+}
+

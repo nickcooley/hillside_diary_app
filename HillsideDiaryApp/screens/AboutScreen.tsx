@@ -1,20 +1,83 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, } from 'react-native';
 import { Text, View } from '../components/Themed';
+import Constants from 'expo-constants';
+import Accordion from 'react-native-collapsible/Accordion';
+
+const BACON_IPSUM =
+  'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
+
+const CONTENT = [
+  {
+    title: 'First',
+    content: BACON_IPSUM,
+  },
+  {
+    title: 'Second',
+    content: BACON_IPSUM,
+  },
+  {
+    title: 'Third',
+    content: BACON_IPSUM,
+  },
+  {
+    title: 'Fourth',
+    content: BACON_IPSUM,
+  },
+  {
+    title: 'Fifth',
+    content: BACON_IPSUM,
+  },
+];
+
+class AccordionView extends React.Component {
+  state = {
+    activeSections: [],
+  };
+
+  setSections = (sections: any) => {
+    this.setState({
+      activeSections: sections.includes(undefined) ? [] : sections,
+    });
+  };
+
+  renderHeader = (section: any, _: any, isActive: boolean) => {
+    return (
+      <Text style={styles.headerText}>{section.title}</Text>
+    );
+  };
+
+  renderContent(section: any, _: any, isActive: boolean) {
+    return (
+      <Text>{section.content}</Text>
+    );
+  }
+
+  render() {
+    const { activeSections } = this.state;
+
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <Accordion
+            activeSections={activeSections}
+            sections={CONTENT}
+            touchableComponent={TouchableOpacity}
+            renderHeader={this.renderHeader}
+            renderContent={this.renderContent}
+            onChange={this.setSections}
+            renderAsFlatList={false}
+          />
+        </ScrollView>
+      </View>
+    );
+  }
+}
 
 export default function AboutScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-              style={styles.button}
-              onPress={() => console.log('Terms of Use')}>
-              <Text>Terms of Use</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-              style={styles.button}
-              onPress={() => console.log('Privacy Policy')}>
-              <Text>Privacy Policy</Text>
-      </TouchableOpacity>
+      <AccordionView/>
     </SafeAreaView>
   );
 }
@@ -36,5 +99,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
     paddingLeft: 15,
+  },
+  headerText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '500',
   },
 });

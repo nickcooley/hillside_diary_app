@@ -16,10 +16,13 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import DiaryScreen from '../screens/DiaryScreen';
 import SkillScreen from '../screens/SkillScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { RecordingStackParamList, RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import AboutScreen from '../screens/AboutScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import RecordScreen from '../screens/Recording/RecordFirst';
+import RecordFirst from '../screens/Recording/RecordFirst';
+import RecordSecond from '../screens/Recording/RecordSecond';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -48,6 +51,8 @@ function RootNavigator() {
     </Stack.Navigator>
   );
 }
+
+
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -84,8 +89,8 @@ function BottomTabNavigator() {
         }}
       />
        <BottomTab.Screen
-        name="Record"
-        component={DiaryScreen}
+        name="Recording"
+        component={RecordingNavigator}
         options={{
           tabBarLabel: () => null,
           headerShown: false,
@@ -115,11 +120,18 @@ function BottomTabNavigator() {
 }
 
 /**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+ * A root stack navigator is often used for displaying modals on top of all other content.
+ * https://reactnavigation.org/docs/modal
  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
+ const RecordingStack = createNativeStackNavigator<RecordingStackParamList>();
+
+ function RecordingNavigator() {
+   return (
+    <RecordingStack.Navigator>
+      <RecordingStack.Group screenOptions={{headerShown: false}}>
+        <RecordingStack.Screen name='RecordFirst' component={RecordFirst} />
+        <RecordingStack.Screen name='RecordSecond' component={RecordSecond} />
+      </RecordingStack.Group>
+    </RecordingStack.Navigator>
+   );
+ }

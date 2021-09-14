@@ -27,7 +27,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 export type RootTabParamList = {
   Diary: undefined;
   Skills: undefined;
-  Record: undefined;
+  Recording: undefined;
   About: undefined;
   Profile: undefined;
 };
@@ -35,4 +35,17 @@ export type RootTabParamList = {
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
   NativeStackScreenProps<RootStackParamList>
+>;
+
+export type RecordingStackParamList = {
+  RecordFirst: undefined;
+  RecordSecond: undefined;
+  RecordThree: undefined;
+  RecordFourt: undefined;
+  RecordFive: undefined;
+};
+
+export type RecordingStackScreenProps<Screen extends keyof RecordingStackParamList> = NativeStackScreenProps<
+RecordingStackParamList,
+  Screen
 >;

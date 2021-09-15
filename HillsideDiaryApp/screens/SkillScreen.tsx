@@ -9,7 +9,7 @@ export default function SkillScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Skills Information Goes Here</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <EditScreenInfo path="/screens/LoginScreen.tsx" />
     </View>
   );
 }

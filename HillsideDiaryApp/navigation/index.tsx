@@ -19,6 +19,7 @@ import SkillScreen from '../screens/SkillScreen';
 import { RecordingStackParamList, RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import AboutScreen from '../screens/AboutScreen';
+import LoginScreen from '../screens/LoginScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RecordScreen from '../screens/Recording/RecordFirst';
 import RecordFirst from '../screens/Recording/RecordFirst';
@@ -84,7 +85,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Skills"
-        component={SkillScreen}
+        component={LoginScreen}
         options={{
           title: 'Skills',
           headerShown: false,

@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingBottom: 50,
-    backgroundColor: 'white',
   },
   headerText: {
     width: '90%',

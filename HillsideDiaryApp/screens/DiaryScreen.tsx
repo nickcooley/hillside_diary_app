@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: Dimensions.get('window').height / 12,
+    paddingBottom: 110
   },
 });

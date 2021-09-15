@@ -41,7 +41,7 @@ export type RecordingStackParamList = {
   RecordFirst: undefined;
   RecordSecond: undefined;
   RecordThree: undefined;
-  RecordFourt: undefined;
+  RecordFour: undefined;
   RecordFive: undefined;
 };
 
@@ -57,27 +57,33 @@ export type DiaryEntity = {
   day: number;
   year: number;
   sudScore: number;
-  skills: [Skill];
-  targets: [Target];
-  emotions: [Emotion];
+  skills: [Attr];
+  targets: [Attr];
+  emotions: [Attr];
   note: string;
 }
 
 export type Skill = {
   id: number,
   name: string,
-  value: string,
+  category: string,
 }
 
 export type Emotion = {
   id: number,
   name: string,
-  value: string
+  category: string,
 }
 
 export type Target = {
   id: number,
   name: string,
-  value: string
+  category: string,
+}
+
+export type Attr = {
+  id: number
+  type: string,
+  value: number
 }
 

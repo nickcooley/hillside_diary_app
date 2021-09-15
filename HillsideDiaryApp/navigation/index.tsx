@@ -23,6 +23,9 @@ import ProfileScreen from '../screens/ProfileScreen';
 import RecordScreen from '../screens/Recording/RecordFirst';
 import RecordFirst from '../screens/Recording/RecordFirst';
 import RecordSecond from '../screens/Recording/RecordSecond';
+import RecordThree from '../screens/Recording/RecordThree';
+import RecordFour from '../screens/Recording/RecordFour';
+import RecordFive from '../screens/Recording/RecordFive';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -131,6 +134,9 @@ function BottomTabNavigator() {
       <RecordingStack.Group screenOptions={{headerShown: false}}>
         <RecordingStack.Screen name='RecordFirst' component={RecordFirst} />
         <RecordingStack.Screen name='RecordSecond' component={RecordSecond} />
+        <RecordingStack.Screen name='RecordThree' component={RecordThree} />
+        <RecordingStack.Screen name='RecordFour' component={RecordFour} />
+        <RecordingStack.Screen name='RecordFive' component={RecordFive} />
       </RecordingStack.Group>
     </RecordingStack.Navigator>
    );

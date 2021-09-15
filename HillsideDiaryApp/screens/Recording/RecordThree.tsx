@@ -4,10 +4,11 @@ import { Text, View } from '../../components/Themed';
 import { RecordingStackParamList, RecordingStackScreenProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import SkillInputs from '../../components/skillInputs';
+import EmotionInputs from '../../components/emotionInputs';
+import { Button } from 'react-native-elements';
 import { RouteProp } from '@react-navigation/native';
 
-export default function RecordSecond({ navigation }: RecordingStackScreenProps<'RecordSecond'>) {
+export default function RecordThree({ navigation }: RecordingStackScreenProps<'RecordThree'>) {
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -17,7 +18,7 @@ export default function RecordSecond({ navigation }: RecordingStackScreenProps<'
             <Text style={styles.title}>Back</Text>
         </View>
         <View style={styles.emotionContainer}>
-            <SkillInputs navigation={navigation} route={"RecordSecond" as unknown as RouteProp<RecordingStackParamList, "RecordSecond">} />
+            <EmotionInputs navigation={navigation} route={"RecordThree" as unknown as RouteProp<RecordingStackParamList, "RecordThree">} />
         </View>
     </View>
   );
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   title: {
-      fontSize: 20,
+    fontSize: 20,
   },
   icon: {
     paddingLeft: 20
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+    paddingBottom: 20
   },
   button: {
     width: Dimensions.get('screen').width - 30

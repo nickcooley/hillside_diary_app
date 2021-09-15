@@ -61,7 +61,7 @@ const DiaryEntityList = (props: curDate) => {
             <View style={styles.listContainer}>
                 <FlatList
                 data={entitiesData.filter(entity => entity.month == month)}
-                renderItem={({item}) => <DiaryEntityView diaryEntity={item as DiaryEntity}/>}
+                renderItem={({item}) => <DiaryEntityView diaryEntity={item as unknown as DiaryEntity}/>}
                 keyExtractor={(item) => item.id}
             />
             </View>

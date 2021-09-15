@@ -9,22 +9,23 @@ import * as Linking from 'expo-linking';
 import { RootStackParamList } from '../types';
 
 
+
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
       Root: {
         screens: {
-          Diary: {
+          Diary: {},
+          Skills: {},
+          Recording: {
             screens: {
-              DiaryScreen: 'diary',
-            },
+              RecordFirst: 'recordFirst',
+              RecordSecond: 'recordSecond'
+            }
           },
-          Skills: {
-            screens: {
-              SkillScreen: 'skills',
-            },
-          },
+          About: {},
+          Profile: {}
         },
       },
       Modal: 'modal',

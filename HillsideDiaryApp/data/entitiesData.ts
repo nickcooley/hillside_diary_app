@@ -1,3 +1,7 @@
+import emotionData from "./emotionData";
+import skillData from "./skillData";
+import targetData from "./targetData";
+
 export default [
     {
         id: '1',
@@ -8,65 +12,29 @@ export default [
         sudScore: 5,
         skills: [
             {
-                id: 1,
-                name: 'Wise Mind',
-                value: '4',
+                id: skillData[1].id,
+                type: 'Skill',
+                value: 2,
             },
             {
-                id: 2,
-                name: 'Non Judgemental',
-                value: '1',
-            },
-            {
-                id: 3,
-                name: 'One Mindful',
-                value: '4',
-            },
-            {
-                id: 5,
-                name: 'Participate',
-                value: '5',
-            },
-            {
-                id: 6,
-                name: 'Building Relationships',
-                value: '5',
-            },
-            {
-                id: 7,
-                name: 'STOP',
-                value: '5',
+                id: skillData[2].id,
+                type: 'Skill',
+                value: 4,
             },
         ],
         targets: [
             {
-                id: 1,
-                name: 'Drug Use',
-                value: '2',
-            },
-            {
-                id: 2,
-                name: 'Alcohol Use',
-                value: '3',
-            },
-            {
-                id: 3,
-                name: 'Guilt / Shame',
-                value: '6',
+                id: targetData[1].id,
+                type: 'Target',
+                value: 3,
             },
         ],
         emotions: [
             {
-                id: 1,
-                name: 'Sad',
-                value: '5',
+                id: emotionData[1].id,
+                type: 'Emotion',
+                value: 4,
             },
-            {
-                id: 2,
-                name: 'Depression',
-                value: '2',
-            },
-            
         ],
         note: ''
     },
@@ -79,49 +47,34 @@ export default [
         sudScore: 6,
         skills: [
             {
-                id: 1,
-                name: 'Wise Mind',
-                value: '4',
+                id: skillData[1].id,
+                type: 'Skill',
+                value: 4,
             },
             {
-                id: 2,
-                name: 'Non Judgemental',
-                value: '1',
+                id: skillData[3].id,
+                type: 'Skill',
+                value: 6,
             },
         ],
         targets: [
             {
-                id: 1,
-                name: 'Drug Use',
-                value: '5',
+                id: targetData[1].id,
+                type: 'Target',
+                value: 3,
             },
-            {
-                id: 2,
-                name: 'Alcohol Use',
-                value: '4',
-            },
-            {
-                id: 3,
-                name: 'Guilt / Shame',
-                value: '1',
-            },
-            {
-                id: 4,
-                name: 'Jealousy',
-                value: '5'
-            }
 
         ],
         emotions: [
             {
-                id: 1,
-                name: 'Sad',
-                value: '4',
+                id: emotionData[4].id,
+                type: 'Emotion',
+                value: 4,
             },
             {
-                id: 3,
-                name: 'Lonely',
-                value: '6',
+                id: emotionData[7].id,
+                type: 'Emotion',
+                value: 7,
             },
         ],
         note: 'hello world',
@@ -132,174 +85,38 @@ export default [
         month: 8,
         day: 17,
         year: 2021,
-        sudScore: 7,
+        sudScore: 1,
         skills: [
             {
-                id: 3,
-                name: 'One Mindful',
-                value: '4',
+                id: skillData[3].id,
+                type: 'Skill',
+                value: 4,
             },
             {
-                id: 5,
-                name: 'Participate',
-                value: '5',
+                id: skillData[4].id,
+                type: 'Skill',
+                value: 3,
             },
         ],
         targets: [
             {
-                id: 2,
-                name: 'Alcohol Use',
-                value: '4',
+                id: targetData[0].id,
+                type: 'Target',
+                value: 8,
             },
             {
-                id: 5,
-                name: 'Suicide',
-                value: '2',
+                id: targetData[2].id,
+                type: 'Target',
+                value: 2,
             },
-            {
-                id: 6,
-                name: 'Envy',
-                value: '4'
-            }
         ],
         emotions: [
             {
-                id: 4,
-                name: 'Happy',
-                value: '9',
-            },
-            {
-                id: 5,
-                name: 'Joyful',
-                value: '7',
-            },
-            {
-                id: 6,
-                name: 'Excited',
-                value: '5',
+                id: emotionData[2].id,
+                type: 'Emotion',
+                value: 1,
             },
         ],
         note: ''
     },
-    {
-        id: '4',
-        time: '11:53 AM',
-        month: 9,
-        day: 2,
-        year: 2021,
-        sudScore: 6,
-        skills: [
-            {
-                skillID: 2,
-                name: 'Non Judgemental',
-                value: '1',
-            },
-            {
-                skillID: 3,
-                name: 'One Mindful',
-                value: '4',
-            },
-            {
-                skillID: 5,
-                name: 'Participate',
-                value: '5',
-            },
-            {
-                skillID: 6,
-                name: 'Building Relationships',
-                value: '5',
-            },
-        ],
-        targets: [
-            {
-                id: 2,
-                name: 'Alcohol Use',
-                value: '4',
-            },
-            {
-                id: 6,
-                name: 'Envy',
-                value: '4'
-            }
-        ],
-        emotions: [
-            {
-                id: 1,
-                name: 'Sad',
-                value: '5',
-            },
-            {
-                id: 2,
-                name: 'Depression',
-                value: '2',
-            },
-            {
-                id: 3,
-                name: 'Lonely',
-                value: '6',
-            },
-        ],
-        note: ''
-    },
-    {
-        id: '5',
-        time: '1:02 PM',
-        month: 9,
-        day: 7,
-        year: 2021,
-        sudScore: 7,
-        skills: [
-            {
-                skillId: 1,
-                name: 'Wise Mind',
-                value: '4',
-            },
-            {
-                skillId: 5,
-                name: 'Participate',
-                value: '5',
-            },
-            {
-                skillId: 7,
-                name: 'STOP',
-                value: '5',
-            },
-        ],
-        targets: [
-            {
-                id: 1,
-                name: 'Drug Use',
-                value: '7',
-            },
-            {
-                id: 3,
-                name: 'Guilt / Shame',
-                value: '5',
-            },
-            {
-                id: 4,
-                name: 'Jealousy',
-                value: '8'
-            }
-        ],
-        emotions: [
-            {
-                id: 1,
-                name: 'Sad',
-                value: '8',
-            },
-            {
-                id: 2,
-                name: 'Depression',
-                value: '5',
-            },
-            {
-                id: 3,
-                name: 'Lonely',
-                value: '4',
-            },
-        ],
-        note: 'Hello. How are you?'
-    }
-
 ]

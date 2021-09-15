@@ -5,7 +5,9 @@ import styles from './styles';
 import {Collapse,CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import DiaryEntityComponent from '../diaryEntity/index';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { Badge } from 'react-native-elements';
+import skillData from '../../data/skillData';
+import emotionData from '../../data/emotionData';
+import targetData from '../../data/targetData';
 
 
 
@@ -36,7 +38,7 @@ const DiaryEntityView = (props: EntityViewProps) => {
                         </View>
                         {diaryEntity.skills.map((item, index) => (
                             <View style={styles.attrBubble} key={index}>
-                                <Text style={styles.attrName}>{item.name}</Text>
+                                <Text style={styles.attrName}>{skillData[item.id].name}</Text>
                                 <Text style={styles.attrValue}>{item.value}</Text>
                             </View>
                         ))}
@@ -51,7 +53,7 @@ const DiaryEntityView = (props: EntityViewProps) => {
                         </View>
                         {diaryEntity.emotions.map((item, index) => (
                             <View style={styles.attrBubble} key={index}>
-                                <Text style={styles.attrName}>{item.name}</Text>
+                                <Text style={styles.attrName}>{emotionData[item.id].name}</Text>
                                 <Text style={styles.attrValue}>{item.value}</Text>
                             </View>
                         ))}
@@ -65,7 +67,7 @@ const DiaryEntityView = (props: EntityViewProps) => {
                         </View>
                         {diaryEntity.targets.map((item, index) => (
                             <View style={styles.attrBubble} key={index}>
-                                <Text style={styles.attrName}>{item.name}</Text>
+                                <Text style={styles.attrName}>{targetData[item.id].name}</Text>
                                 <Text style={styles.attrValue}>{item.value}</Text>
                             </View>
                         ))}

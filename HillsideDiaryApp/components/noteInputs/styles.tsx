@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +11,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray',
     },
     title: {
-        fontSize: 28,
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: Colors.light.primary,
         paddingVertical: 15,
     },
     txtInput: {

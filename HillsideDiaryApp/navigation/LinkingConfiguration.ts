@@ -7,6 +7,11 @@
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 import { RootStackParamList } from '../types';
+import RecordThree from '../screens/Recording/RecordThree';
+import RecordFour from '../screens/Recording/RecordFour';
+import RecordFive from '../screens/Recording/RecordFive';
+import RecordConfirmation from '../screens/Recording/RecordConfirmation';
+import RecordReview from '../screens/Recording/RecordReview';
 
 
 
@@ -21,7 +26,12 @@ const linking: LinkingOptions<RootStackParamList> = {
           Recording: {
             screens: {
               RecordFirst: 'recordFirst',
-              RecordSecond: 'recordSecond'
+              RecordSecond: 'recordSecond',
+              RecordThree: 'recordThree',
+              RecordFour: 'recordFour',
+              RecordFive: 'recordFive',
+              RecordReview: 'recordReview',
+              RecordConfirmation: 'recordConfirmation'
             }
           },
           About: {},

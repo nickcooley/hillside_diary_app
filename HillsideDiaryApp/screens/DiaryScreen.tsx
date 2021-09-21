@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import DiaryEntityList from '../components/diaryEntityList';
+import Colors from '../constants/Colors';
 
 
 export default function DiaryScreen({ navigation }: RootTabScreenProps<'Diary'>) {
@@ -16,6 +17,7 @@ export default function DiaryScreen({ navigation }: RootTabScreenProps<'Diary'>)
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Colors.light.background,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',

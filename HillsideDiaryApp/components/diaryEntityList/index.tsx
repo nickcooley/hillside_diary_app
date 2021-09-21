@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, TouchableHighlight, Text } from 'react-native';
+import { View, FlatList, TouchableHighlight, Text, TouchableWithoutFeedback } from 'react-native';
 import styles from './styles';
 import entitiesData from '../../data/entitiesData';
 import DiaryEntityComponent from '../diaryEntity/index';
@@ -44,26 +44,26 @@ const DiaryEntityList = (props: curDate) => {
     return (
         <View style={styles.container}>
             <View style={styles.datePickerContainer}>
-                <TouchableHighlight onPress={onPressLeft}>
-                    <View style={styles.leftDatePicker}>
-                        <AntDesign name="left"  size={35}/>     
+                <TouchableWithoutFeedback onPress={onPressLeft}>
+                    <View>
+                        <AntDesign name="left" style={styles.datePickerIcon} size={35}/>     
                     </View>
-                </TouchableHighlight>
-                <TouchableHighlight>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback>
                     <Text style={styles.datePickerText}>{monthNames[month]} {year}</Text>
-                </TouchableHighlight>
-                <TouchableHighlight onPress={onPressRight}>
-                    <View style={styles.rightDatePicker}>
-                        <AntDesign name="right" size={35}/>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={onPressRight}>
+                    <View>
+                        <AntDesign name="right" style={styles.datePickerIcon} size={35}/>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
             </View>
-            <View style={styles.listContainer}>
+            <View>
                 <FlatList
-                data={entitiesData.filter(entity => entity.month == month)}
-                renderItem={({item}) => <DiaryEntityView diaryEntity={item as unknown as DiaryEntity}/>}
-                keyExtractor={(item) => item.id}
-            />
+                    data={entitiesData.filter(entity => entity.month == month+1)}
+                    renderItem={({item}) => <DiaryEntityView diaryEntity={item as DiaryEntity}/>}
+                    keyExtractor={(item) => item.id.toString()}
+                />
             </View>
         </View>
     )

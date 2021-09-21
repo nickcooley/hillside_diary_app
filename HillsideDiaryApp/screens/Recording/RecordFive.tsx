@@ -8,8 +8,22 @@ import { Button } from 'react-native-elements';
 import TargetInputs from '../../components/targetInputs/index';
 import NoteInput from '../../components/noteInputs';
 import { RouteProp } from '@react-navigation/native';
+import globals from '../../global/globals';
+import {Attr} from '../../types';
 
 export default function RecordFive({ navigation }: RecordingStackScreenProps<'RecordFive'>) {
+
+  const cleanUpAttr = () => {
+    const newSkills = globals.DiaryLog.skills.filter((item) => item.value > 0);
+    const newEmotions = globals.DiaryLog.emotions.filter((item) => item.value > 0);
+    const newTargets = globals.DiaryLog.targets.filter((item) => item.value > 0);
+
+    globals.DiaryLog.skills = newSkills as [Attr];
+    globals.DiaryLog.emotions = newEmotions as [Attr];
+    globals.DiaryLog.targets = newTargets as [Attr];
+
+
+  };
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -22,7 +36,10 @@ export default function RecordFive({ navigation }: RecordingStackScreenProps<'Re
             <NoteInput navigation={navigation} route={"RecordFive" as unknown as RouteProp<RecordingStackParamList, "RecordFive">} />
         </View>
         <View style={styles.buttonContainer}>
-            <Button style={styles.button} title="Confirm" />
+        <Button style={styles.button} title="Review" onPress={()=>{
+          cleanUpAttr();
+          navigation.navigate('RecordReview');
+        }} />
         </View>
     </View>
   );

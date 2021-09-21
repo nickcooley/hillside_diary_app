@@ -4,6 +4,7 @@ import styles from './styles';
 import { useLinkTo, useNavigation } from '@react-navigation/native';
 import {DiaryEntity} from '../../types';
 import { MaterialCommunityIcons, FontAwesome, AntDesign } from '@expo/vector-icons';
+import Colors from '../../constants/Colors';
 
 export type DiaryEntityProps = {
     diaryEntity: DiaryEntity,
@@ -20,15 +21,15 @@ const DiaryEntityComponent = (props: DiaryEntityProps) => {
         <View style={styles.diaryEnties}>
             <View style={styles.container}>
                 <View style={styles.dateContainer}>
-                    <Text style={styles.date}>{monthNames[diaryEntity.month]} {diaryEntity.day}, {diaryEntity.year}</Text>
+                    <Text style={styles.date}>{monthNames[diaryEntity.month-1]} {diaryEntity.day}, {diaryEntity.year}</Text>
                     <View style={styles.timeContainer}>
-                        {includedNote ? <FontAwesome name={'sticky-note-o'} size={20}/> : <View />}
+                        {includedNote ? <FontAwesome name={'sticky-note-o'} size={20} color={Colors.light.primary}/> : <View />}
                         <Text style={styles.time}>{diaryEntity.time}</Text>
                     </View>
                 </View>
                 <View style={styles.contentContainer}>
                     <View style={styles.sudContainer}>
-                        <MaterialCommunityIcons name={emotionIcon[diaryEntity.sudScore]} size={75}/>
+                        <MaterialCommunityIcons name={emotionIcon[diaryEntity.sudScore]} size={75} color={Colors.light.primary} />
                         <Text style={styles.sudScore}>{diaryEntity.sudScore}</Text>
                     </View>
                     <View style={styles.attrContainer}>

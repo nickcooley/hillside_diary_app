@@ -1,24 +1,26 @@
 import { Dimensions, StyleSheet } from "react-native";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 10
+        paddingVertical: 10,
     },
     rightSide: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingLeft: Dimensions.get('screen').width / 8
+        paddingLeft: Dimensions.get('screen').width / 20
     },
     title: {
-        fontSize: 14,
-        fontWeight: 'bold'
+        fontSize: 18,
     },
     value: {
-        fontSize: 12,
+        color: Colors.light.primary,
+        fontSize: 16,
+        fontWeight: '500',
         paddingLeft: 20
     },
 })

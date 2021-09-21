@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, } from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
-import Constants from 'expo-constants';
 import Accordion from 'react-native-collapsible/Accordion';
 
 //Dummy Content Text
@@ -56,7 +55,7 @@ class AccordionView extends React.Component {
     //Accordion Menu
     return (
       <View>
-        <ScrollView>
+        <ScrollView style={styles.scrollContainer}>
           <Accordion
             activeSections={activeSections}
             sections={CONTENT}
@@ -74,24 +73,26 @@ class AccordionView extends React.Component {
 
 export default function AboutScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
       <Text style={styles.logoText}>HILLSIDE</Text>
       <AccordionView/>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    paddingBottom: 50,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingTop: Dimensions.get('screen').height / 3,
   },
   headerText: {
-    width: '90%',
-    fontSize: 20,
+    width: '95%',
+    fontSize: 22,
     fontWeight: '500',
     borderStyle: 'solid',
     borderColor: 'grey',
@@ -102,18 +103,22 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   content: {
-    margin: 10,
-    fontSize: 14,
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    fontSize: 16,
+  },
+  scrollContainer: {
+    height: 280,
+    width: '100%'
   },
   logo: {
     width: 141,
     height: 141,
-    bottom: '30%',
     alignSelf: 'center',
   },
   logoText: {
     alignSelf: 'center',
-    bottom: '30%',
     fontSize: 24,
+    paddingBottom: 20
   }
 });

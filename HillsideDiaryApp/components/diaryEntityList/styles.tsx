@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,16 +10,15 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         justifyContent: 'center'
     },
-    leftDatePicker: {},
+    datePickerIcon: {
+        color: Colors.light.primary,
+    }, 
     datePickerText: {
         fontSize: 25,
+        color: Colors.light.primary,
         fontWeight: 'bold',
         paddingHorizontal: 10
     },
-    rightDatePicker: {},
-    listContainer: {
-
-    }
 })
 
 export default styles

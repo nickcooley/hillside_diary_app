@@ -1,12 +1,15 @@
 import { Dimensions, StyleSheet } from "react-native";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
         alignItems: 'center'
     },
-    emotionTitle: {
-        fontSize: 28,
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: Colors.light.primary,
         paddingVertical: 15,
     },
     button: {

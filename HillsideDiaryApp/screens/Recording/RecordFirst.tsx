@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 import SUDScorePicker from '../../components/sudScorePicker';
 import { Text, View } from '../../components/Themed';
+import Colors from '../../constants/Colors';
+import globals from '../../global/globals';
 import { RecordingStackScreenProps } from '../../types';
-
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function RecordFirst({ navigation }: RecordingStackScreenProps<'RecordFirst'>) {
+
+
+  let day: number;
+  let month: number;
+  let year: number;
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -21,11 +27,11 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
 
   const getCurrentDate=()=>{
 
-    var date = new Date().getDate();
-    var month = new Date().getMonth() + 1;
-    var year = new Date().getFullYear();
+    day = new Date().getDate();
+    month = new Date().getMonth() + 1;
+    year = new Date().getFullYear();
 
-    return monthNames[month] + ' ' + date + ', ' + year;
+    return monthNames[month-1] + ' ' + day + ', ' + year;
   }
 
   const getCurrentTime=()=>{
@@ -51,7 +57,15 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
         <SUDScorePicker />
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} title="Next" onPress={()=>navigation.navigate('RecordSecond')} />
+        <Button style={styles.button} title="Next" onPress={()=>{
+          globals.DiaryLog.day = day;
+          globals.DiaryLog.month = month;
+          globals.DiaryLog.year = year;
+          globals.DiaryLog.date = currentDate;
+          globals.DiaryLog.time = currentTime;
+          globals
+          navigation.navigate('RecordSecond');
+        }} />
       </View>
     </View>
   );
@@ -59,6 +73,7 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
     paddingTop: Dimensions.get('screen').height / 10
@@ -70,6 +85,7 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 35,
     fontWeight: 'bold',
+    color: Colors.light.primary,
     paddingVertical: 10
   },
   time: {

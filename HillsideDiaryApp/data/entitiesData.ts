@@ -4,9 +4,9 @@ import targetData from "./targetData";
 
 export default [
     {
-        id: '1',
+        id: 1,
         time: '12:43 PM',
-        month: 8,
+        month: 9,
         day: 1,
         year: 2021,
         sudScore: 5,
@@ -22,13 +22,7 @@ export default [
                 value: 4,
             },
         ],
-        targets: [
-            {
-                id: targetData[1].id,
-                type: 'Target',
-                value: 3,
-            },
-        ],
+        targets: [],
         emotions: [
             {
                 id: emotionData[1].id,
@@ -39,9 +33,9 @@ export default [
         note: ''
     },
     {
-        id: '2',
+        id: 2,
         time: '9:05 AM',
-        month: 8,
+        month: 9,
         day: 5,
         year: 2021,
         sudScore: 6,
@@ -80,9 +74,9 @@ export default [
         note: 'hello world',
     },
     {
-        id: '3',
+        id: 3,
         time: '3:14 PM',
-        month: 8,
+        month: 9,
         day: 17,
         year: 2021,
         sudScore: 1,
@@ -110,13 +104,7 @@ export default [
                 value: 2,
             },
         ],
-        emotions: [
-            {
-                id: emotionData[2].id,
-                type: 'Emotion',
-                value: 1,
-            },
-        ],
+        emotions: [],
         note: ''
     },
 ]

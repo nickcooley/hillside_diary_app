@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -26,6 +26,8 @@ import RecordSecond from '../screens/Recording/RecordSecond';
 import RecordThree from '../screens/Recording/RecordThree';
 import RecordFour from '../screens/Recording/RecordFour';
 import RecordFive from '../screens/Recording/RecordFive';
+import RecordConfirmation from '../screens/Recording/RecordConfirmation';
+import RecordReview from '../screens/Recording/RecordReview';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -97,7 +99,21 @@ function BottomTabNavigator() {
         options={{
           tabBarLabel: () => null,
           headerShown: false,
-          tabBarIcon: ({ color }) => <Feather name="edit-2" color={color} size={iconSize+5} />,
+          tabBarIcon: ({ color }) => {
+            return(
+              <View style={{
+                marginTop: 10,
+                height: 55,
+                width: 55,
+                borderRadius: 60 / 2,
+                backgroundColor: Colors.light.primary,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Feather name="edit-2" color={'white'} size={iconSize+5} />
+              </View>
+            )
+          },
         }}
       />
        <BottomTab.Screen
@@ -137,6 +153,8 @@ function BottomTabNavigator() {
         <RecordingStack.Screen name='RecordThree' component={RecordThree} />
         <RecordingStack.Screen name='RecordFour' component={RecordFour} />
         <RecordingStack.Screen name='RecordFive' component={RecordFive} />
+        <RecordingStack.Screen name='RecordReview' component={RecordReview} />
+        <RecordingStack.Screen name='RecordConfirmation' component={RecordConfirmation} />
       </RecordingStack.Group>
     </RecordingStack.Navigator>
    );

@@ -6,6 +6,7 @@
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import RecordReview from './screens/Recording/RecordReview';
 
 declare global {
   namespace ReactNavigation {
@@ -43,6 +44,8 @@ export type RecordingStackParamList = {
   RecordThree: undefined;
   RecordFour: undefined;
   RecordFive: undefined;
+  RecordReview: undefined;
+  RecordConfirmation: undefined;
 };
 
 export type RecordingStackScreenProps<Screen extends keyof RecordingStackParamList> = NativeStackScreenProps<
@@ -51,8 +54,9 @@ RecordingStackParamList,
 >;
 
 export type DiaryEntity = {
-  id: string;
+  id: number;
   time: string;
+  date: string;
   month: number;
   day: number;
   year: number;

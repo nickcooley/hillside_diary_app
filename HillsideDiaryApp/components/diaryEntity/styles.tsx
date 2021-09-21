@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     diaryEnties: {
@@ -8,7 +9,6 @@ const styles = StyleSheet.create({
     container: {
         width: '95%',
         margin: 10,
-        borderColor: 'black',
         borderWidth: 2,
         borderRadius: 2,
     },
@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     date: {
-        color: 'black',
         fontWeight: 'bold',
         fontSize: 22,
     },
@@ -55,7 +54,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 5,
         borderWidth: 2,
-        borderColor: 'black',
         borderRadius: 8,
         justifyContent: 'space-between'
     },
@@ -67,13 +65,12 @@ const styles = StyleSheet.create({
     borderContainer: {
         borderLeftWidth: 1,
         width: 30,
-
     },
     numOfAttr: {
         fontSize: 14,
+        fontWeight: '500',
         alignItems: 'center',
         textAlign: 'center',
-
     },
 })
 

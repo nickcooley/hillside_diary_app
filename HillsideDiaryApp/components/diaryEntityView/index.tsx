@@ -30,7 +30,7 @@ const DiaryEntityView = (props: EntityViewProps) => {
                     <View style={styles.bodyContainer}>
 
                         <View style={styles.detailsContainer}>
-                            <Text style={styles.detailLabel}>In Depth View</Text>
+                            <Text style={styles.detailLabel}>Overview</Text>
                         </View>
                             
                         <View style={styles.labelContainer}>

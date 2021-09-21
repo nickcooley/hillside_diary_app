@@ -102,15 +102,14 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => {
             return(
               <View style={{
-                marginTop: 10,
-                height: 55,
-                width: 55,
+                height: 45,
+                width: 45,
                 borderRadius: 60 / 2,
                 backgroundColor: Colors.light.primary,
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Feather name="edit-2" color={'white'} size={iconSize+5} />
+                <Feather name="edit-2" color={'white'} size={iconSize} />
               </View>
             )
           },

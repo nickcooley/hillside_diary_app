@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     paddingTop: Dimensions.get('screen').height / 10,
   },
   targetContainer: {
-      paddingTop: 20,
+    width: '100%',
+    paddingTop: 20,
   },
   header: {
     width: '100%',

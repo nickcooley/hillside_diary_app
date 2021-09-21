@@ -4,7 +4,8 @@ import Colors from "../../constants/Colors";
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: Dimensions.get('screen').width / 8,
     },
     title: {
         fontSize: 30,

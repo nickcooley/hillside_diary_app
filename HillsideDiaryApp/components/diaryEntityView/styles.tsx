@@ -3,14 +3,17 @@ import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     bodyContainer: {
-        marginTop: -12,
-        width: '94%',
+        marginTop: -20,
+        width: '95%',
         flexDirection: 'column',
         alignSelf: 'center',
         backgroundColor: Colors.light.primary,
         borderTopWidth: 0,
         borderWidth: 2,
-        borderRadius: 3,
+   
+        borderBottomStartRadius: 20,
+        borderBottomEndRadius: 20,
+        borderColor: Colors.light.primary,
         paddingBottom: 10,
     },
     labelContainer: {
@@ -18,14 +21,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     detailsContainer: {
-        paddingVertical: 15,
-        alignItems: 'flex-start',
-        paddingHorizontal: 20,
+        marginTop: 20,
+        marginBottom: 10,
+        alignItems: 'center',
+        marginHorizontal: 20,
+        borderColor: 'white',
+        borderWidth: 2,
+        borderRadius: 20,
+        backgroundColor: 'white'
     },
     detailLabel: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'black',
     },
     horz: {
         flex: 1, 

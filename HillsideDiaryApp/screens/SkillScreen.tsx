@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, } from 'react-native';
+import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Accordion from 'react-native-collapsible/Accordion';
+import Colors from '../constants/Colors';
+import { Foundation } from '@expo/vector-icons';
 
 //Dummy Content Text
 const VEGGIE_IPSUM =
@@ -54,14 +56,22 @@ class AccordionView extends React.Component {
   //Renders Accordion menu item header
   renderHeader = (section: any, _: any, isActive: boolean) => {
     return (
-      <Text style={styles.headerText}>{section.title}</Text>
-    );
+      isActive ? 
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>{section.title}</Text>
+        </View> : 
+        <View style={styles.headerActiveContainer}>
+          <Text style={styles.headerActiveText}>{section.title}</Text>
+        </View>
+    )
   };
 
   //Renders Accordion menu item content
   renderContent(section: any, _: any, isActive: boolean) {
     return (
-      <Text style={styles.content}>{section.content}</Text>
+      <View style={styles.contentContainer}>
+        <Text style={styles.content}>{section.content}</Text>
+      </View>
     );
   }
 
@@ -69,7 +79,7 @@ class AccordionView extends React.Component {
     const { activeSections } = this.state;
 
     //Accordion Menu
-    return (
+    return (      
       <View>
         <ScrollView>
           <Accordion
@@ -90,6 +100,12 @@ class AccordionView extends React.Component {
 export default function SkillScreen() {
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.titleRow}>
+        <Foundation name="social-skillshare" color={Colors.light.primary} size={30} />
+        <Text style={styles.title}>Skills</Text>
+      </View>
+      <Text style={styles.subtitle}>Tap on a skill to learn more</Text>
+
       <AccordionView/>
     </SafeAreaView>
   );
@@ -99,23 +115,71 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
+    backgroundColor: Colors.light.background,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingBottom: 50,
   },
-  headerText: {
-    width: '90%',
-    fontSize: 20,
-    fontWeight: '500',
+  titleRow: {
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: Colors.light.primary,
+    paddingHorizontal: 5
+  },
+  subtitle: {
+    fontSize: 16,
+    color: 'gray',
+    textAlign: 'center',
+    paddingBottom: 20,
+  },
+  headerContainer: {
+    justifyContent: 'center',
     borderStyle: 'solid',
     borderColor: 'grey',
     borderWidth: 1,
     borderRadius: 5,
-    margin: 4,
+    paddingHorizontal: 10,
     marginHorizontal: 10,
-    paddingLeft: 15,
+    marginVertical: 10,
+  },
+  headerActiveContainer: {
+    backgroundColor: Colors.light.primary,
+    justifyContent: 'center',
+    borderStyle: 'solid',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: '500',
+    margin: 4,
+    paddingLeft: 10,
+    marginVertical: 10,
+  },
+  headerActiveText: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '500',
+    margin: 4,
+    paddingLeft: 10,
+    marginVertical: 10,
+  },
+  contentContainer: {
+    paddingHorizontal: 5,
+    justifyContent: 'center',
   },
   content: {
     margin: 10,
     fontSize: 14,
+    paddingHorizontal: 12,
   },
 });

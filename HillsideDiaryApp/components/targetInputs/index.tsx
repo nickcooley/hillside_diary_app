@@ -12,6 +12,7 @@ export default function TargetInputs({ navigation }: RecordingStackScreenProps<'
     return (
         <View style={styles.container}>
             <FlatList 
+                style={{width: '90%'}}
                 data={targetData}
                 renderItem={({item}) => <AttrInputs name={item.name} id={item.id} type={'Target'}/>}
                 keyExtractor={item => item.id.toString()}

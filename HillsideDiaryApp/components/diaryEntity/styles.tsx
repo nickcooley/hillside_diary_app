@@ -4,13 +4,15 @@ import Colors from "../../constants/Colors";
 const styles = StyleSheet.create({
     diaryEnties: {
         width: '100%',
-        flex: 1
+        flex: 1,
     },
     container: {
+        backgroundColor: 'white',
         width: '95%',
         margin: 10,
         borderWidth: 2,
-        borderRadius: 2,
+        borderRadius: 10,
+        borderColor: Colors.light.primary,
     },
     dateContainer: {
         flexDirection: 'row',
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     date: {
+        color: 'black',
         fontWeight: 'bold',
         fontSize: 22,
     },
@@ -55,18 +58,23 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 2,
         borderRadius: 8,
+        borderColor: Colors.light.primary,
+        backgroundColor: Colors.light.primary,
         justifyContent: 'space-between'
     },
     labelofAttr: {
+        color: 'white',
         fontSize: 14,
-        fontWeight: 'bold',
+        fontWeight: '500',
         paddingHorizontal: 5,
     },
     borderContainer: {
         borderLeftWidth: 1,
+        borderLeftColor: 'white',
         width: 30,
     },
     numOfAttr: {
+        color: 'white',
         fontSize: 14,
         fontWeight: '500',
         alignItems: 'center',

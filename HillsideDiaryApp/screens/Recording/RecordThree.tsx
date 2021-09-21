@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     paddingTop: Dimensions.get('screen').height / 10,
   },
   emotionContainer: {
-      paddingTop: 20,
+    width: '100%',
+    paddingTop: 20,
   },
   header: {
     width: '100%',
@@ -46,9 +47,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   buttonContainer: {
-    flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 20
   },
   button: {
     width: Dimensions.get('screen').width - 30

@@ -2,9 +2,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
-    container: {
-        
-    },
+    container: {},
     inputContainer: {
         width: '100%',
         padding: 20,

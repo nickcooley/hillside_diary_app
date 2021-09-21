@@ -29,9 +29,10 @@ export default function NoteInput({ navigation }: RecordingStackScreenProps<'Rec
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.txtInput}
-                    editable
-                    maxLength={35}
                     multiline
+                    editable
+                    textAlignVertical={'top'}
+                    maxLength={35}
                     numberOfLines={35}
                     onChangeText={text => {
                         onChangeText(text);

@@ -155,14 +155,17 @@ export default function RecordReview({
                                 <View></View>
                             )}
 
-                        <Button
-                            style={styles.button}
-                            title="Confirm"
-                            onPress={() => {
-                                entitiesData.push(globals.DiaryLog);
-                                navigation.navigate("RecordConfirmation");
-                            }}
-                        />
+                        <View style={styles.buttonContainer}>
+                            <Button
+                                style={styles.button}
+                                title="Confirm"
+                                onPress={() => {
+                                    entitiesData.push(globals.DiaryLog);
+                                    navigation.navigate("RecordConfirmation");
+                                }}
+                            />
+                        </View>
+
                     </View>
                 </View>
             </ScrollView>
@@ -275,6 +278,12 @@ const styles = StyleSheet.create({
         width: Dimensions.get("screen").width - 40,
         padding: 10,
         backgroundColor: "lightgray",
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingVertical: 20,
+        width: Dimensions.get('screen').width - 30
     },
     button: {
         paddingVertical: 20,

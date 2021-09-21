@@ -2,7 +2,6 @@ import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import skillData from '../../data/skillData';
-import globals from '../../global/globals';
 import { RecordingStackScreenProps } from '../../types';
 import AttrInputs from '../attrInputs/index';
 import styles from './styles';

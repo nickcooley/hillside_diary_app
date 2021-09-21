@@ -16,7 +16,7 @@ export default function RecordSecond({ navigation }: RecordingStackScreenProps<'
             </TouchableWithoutFeedback>
             <Text style={styles.title}>Back</Text>
         </View>
-        <View style={styles.emotionContainer}>
+        <View style={styles.skillContainer}>
             <SkillInputs navigation={navigation} route={"RecordSecond" as unknown as RouteProp<RecordingStackParamList, "RecordSecond">} />
         </View>
     </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Dimensions.get('screen').height / 10,
   },
-  emotionContainer: {
+  skillContainer: {
       paddingTop: 20,
   },
   header: {

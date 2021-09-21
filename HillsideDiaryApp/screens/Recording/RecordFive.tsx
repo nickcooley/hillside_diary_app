@@ -36,10 +36,10 @@ export default function RecordFive({ navigation }: RecordingStackScreenProps<'Re
             <NoteInput navigation={navigation} route={"RecordFive" as unknown as RouteProp<RecordingStackParamList, "RecordFive">} />
         </View>
         <View style={styles.buttonContainer}>
-        <Button style={styles.button} title="Review" onPress={()=>{
-          cleanUpAttr();
-          navigation.navigate('RecordReview');
-        }} />
+          <Button style={styles.button} title="Review" onPress={()=>{
+            cleanUpAttr();
+            navigation.navigate('RecordReview');
+          }} />
         </View>
     </View>
   );
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 20
+    paddingBottom: 20,
+    width: Dimensions.get('screen').width - 30
   },
   button: {
     width: Dimensions.get('screen').width - 30

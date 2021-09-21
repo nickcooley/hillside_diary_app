@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     datePickerIcon: {
-        color: Colors.light.primary,
+        color: Colors.light.primary
     }, 
     datePickerText: {
         fontSize: 25,

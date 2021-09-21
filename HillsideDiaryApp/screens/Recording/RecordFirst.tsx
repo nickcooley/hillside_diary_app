@@ -99,11 +99,11 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
   },
   buttonContainer: {
-    flex: 1,
+    width: Dimensions.get('screen').width - 30,
     justifyContent: 'flex-end',
     paddingBottom: 20
   },
   button: {
-    width: Dimensions.get('screen').width - 30
+    width: Dimensions.get('screen').width - 30,
   },
 });

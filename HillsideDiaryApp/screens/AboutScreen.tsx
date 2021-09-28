@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, Dimensions } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
 import Accordion from 'react-native-collapsible/Accordion';
+import { useTheme } from '@react-navigation/native';
+import Colors from '../constants/Colors';
 
 //Dummy Content Text
 const BACON_IPSUM =
@@ -24,6 +26,7 @@ const CONTENT = [
 ];
 
 class AccordionView extends React.Component {
+  
   state = {
     activeSections: [],
   };
@@ -72,10 +75,12 @@ class AccordionView extends React.Component {
 }
 
 export default function AboutScreen() {
+  const {colors} = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
       <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
-      <Text style={styles.logoText}>HILLSIDE</Text>
+      <Text style={[styles.logoText, {color: colors.text}]}>HILLSIDE</Text>
       <AccordionView/>
     </View>
   );
@@ -87,8 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingTop: Dimensions.get('screen').height / 3,
+    paddingTop: Dimensions.get('screen').height / 8,
   },
   headerText: {
     width: '95%',
@@ -101,6 +105,8 @@ const styles = StyleSheet.create({
     margin: 4,
     marginHorizontal: 10,
     paddingLeft: 15,
+    color: 'white',
+    backgroundColor: Colors.light.colors.primary,
   },
   content: {
     paddingHorizontal: 30,
@@ -109,7 +115,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     height: 280,
-    width: '100%'
+    width: '100%',
   },
   logo: {
     width: 141,
@@ -119,6 +125,6 @@ const styles = StyleSheet.create({
   logoText: {
     alignSelf: 'center',
     fontSize: 24,
-    paddingBottom: 20
+    paddingBottom: 20,
   }
 });

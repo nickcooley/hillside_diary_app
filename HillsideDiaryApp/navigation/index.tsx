@@ -5,7 +5,7 @@
  */
 import { AntDesign, Feather, Foundation, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme, useTheme } from '@react-navigation/native';
+import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, View } from 'react-native';
@@ -27,7 +27,6 @@ import RecordFour from '../screens/Recording/RecordFour';
 import RecordFive from '../screens/Recording/RecordFive';
 import RecordConfirmation from '../screens/Recording/RecordConfirmation';
 import RecordReview from '../screens/Recording/RecordReview';
-import { colors } from 'react-native-elements';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -74,6 +73,7 @@ function BottomTabNavigator() {
       initialRouteName="Diary"
       screenOptions={{
         tabBarActiveTintColor: theme.colors.primary,
+        tabBarStyle: { borderTopColor: theme.colors.background, elevation: 4, marginBottom: 2, paddingVertical: 3 }
       }}>
       <BottomTab.Screen
         name="Diary"

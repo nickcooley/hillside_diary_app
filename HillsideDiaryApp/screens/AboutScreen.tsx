@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, Dimensions } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
-import Colors from '../constants/Colors';
 import Accordion from 'react-native-collapsible/Accordion';
-import { color } from 'react-native-reanimated';
+import { useTheme } from '@react-navigation/native';
+import Colors from '../constants/Colors';
 
 //Dummy Content Text
 const BACON_IPSUM =
@@ -26,6 +26,7 @@ const CONTENT = [
 ];
 
 class AccordionView extends React.Component {
+  
   state = {
     activeSections: [],
   };
@@ -74,10 +75,12 @@ class AccordionView extends React.Component {
 }
 
 export default function AboutScreen() {
+  const {colors} = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
       <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
-      <Text style={styles.logoText}>HILLSIDE</Text>
+      <Text style={[styles.logoText, {color: colors.text}]}>HILLSIDE</Text>
       <AccordionView/>
     </View>
   );
@@ -89,7 +92,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: Colors.light.colors.background,
     paddingTop: Dimensions.get('screen').height / 8,
   },
   headerText: {
@@ -124,6 +126,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 24,
     paddingBottom: 20,
-    color: Colors.light.colors.text,
   }
 });

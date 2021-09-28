@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, Scroll
 import { Text, View } from '../components/Themed';
 import Accordion from 'react-native-collapsible/Accordion';
 import Colors from '../constants/Colors';
+import { useTheme } from '@react-navigation/native';
 import { Foundation } from '@expo/vector-icons';
 
 //Dummy Content Text
@@ -98,11 +99,13 @@ class AccordionView extends React.Component {
 }
 
 export default function SkillScreen() {
+  const {colors} = useTheme();
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, {backgroundColor: colors.background}]}>
       <View style={styles.titleRow}>
-        <Foundation name="social-skillshare" color={Colors.light.colors.primary} size={30} />
-        <Text style={styles.title}>Skills</Text>
+        <Foundation name="social-skillshare" color={colors.primary} size={30} />
+        <Text style={[styles.title, {color: colors.primary}]}>Skills</Text>
       </View>
       <Text style={styles.subtitle}>Tap on a skill to learn more</Text>
 
@@ -115,7 +118,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: Colors.light.colors.background,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingBottom: 50,
   },
@@ -128,7 +130,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: Colors.light.colors.primary,
     paddingHorizontal: 5
   },
   subtitle: {

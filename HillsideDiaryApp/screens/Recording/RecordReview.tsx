@@ -2,32 +2,27 @@ import * as React from "react";
 import { Dimensions, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Text, View } from "../../components/Themed";
 import { RecordingStackScreenProps } from "../../types";
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import globals from "../../global/globals";
 import skillData from "../../data/skillData";
 import emotionData from "../../data/emotionData";
 import targetData from "../../data/targetData";
 import { Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
-import Colors from "../../constants/Colors";
 import entitiesData from "../../data/entitiesData";
+import { useTheme } from "@react-navigation/native";
+import useColorScheme from '../../hooks/useColorScheme';
 
-export default function RecordReview({
-    navigation,
-}: RecordingStackScreenProps<"RecordReview">) {
-    const emotionIcon = [
-        "emoticon-cry-outline",
-        "emoticon-frown-outline",
-        "emoticon-confused-outline",
-        "emoticon-neutral-outline",
-        "emoticon-happy-outline",
-        "emoticon-outline",
-        "emoticon-excited-outline",
-    ];
+export default function RecordReview({ navigation }: RecordingStackScreenProps<"RecordReview">) {
+
+    const {colors} = useTheme();
+    const light = useColorScheme();
+
+    const emotionIcon = ['emoticon-cry-outline', 'emoticon-frown-outline', 'emoticon-confused-outline', 'emoticon-neutral-outline', 'emoticon-happy-outline', 'emoticon-outline', 'emoticon-excited-outline'] as any[];
 
     return (
         <View style={{flex: 1}}>
-            <ScrollView style={{ backgroundColor: "white" }}>
+            <ScrollView style={{ backgroundColor: colors.background }}>
                 <View style={styles.container}>
                     <View style={styles.headerBar}>
                         <TouchableWithoutFeedback
@@ -38,114 +33,114 @@ export default function RecordReview({
                             <Ionicons
                                 name="arrow-back-sharp"
                                 size={40}
-                                style={styles.icon}
+                                style={[styles.icon, {color: colors.text}]}
                             ></Ionicons>
                         </TouchableWithoutFeedback>
-                        <Text style={styles.titleBar}>Back</Text>
+                        <Text style={[styles.titleBar, {color: colors.text}]}>Back</Text>
                     </View>
                     <View style={styles.header}>
-                        <Text style={styles.title}>Your Log</Text>
-                        <Text style={styles.subtitle}>Please review before submission</Text>
+                        <Text style={[styles.title, {color: colors.primary}]}>Your Log</Text>
+                        <Text style={[styles.subtitle, {color: light ? 'gray' : 'lightgray'}]}>Please review before submission</Text>
                     </View>
                     <View style={styles.body}>
                         <View style={styles.labelContainer}>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                             <View style={styles.attrContainer}>
-                                <Text style={styles.textLabel}>Date / Time</Text>
+                                <Text style={[styles.textLabel, {color: colors.text}]}>Date / Time</Text>
                             </View>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                         </View>
 
                         <View style={styles.dateRow}>
-                            <Text style={styles.dateLabel}>{globals.DiaryLog.date}</Text>
-                            <Text style={styles.timeLabel}>{globals.DiaryLog.time}</Text>
+                            <Text style={[styles.dateLabel, {color: colors.primary}]}>{globals.DiaryLog.date}</Text>
+                            <Text style={[styles.timeLabel, {color: colors.text}]}>{globals.DiaryLog.time}</Text>
                         </View>
 
                         <View style={styles.labelContainer}>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                             <View style={styles.attrContainer}>
-                                <Text style={styles.textLabel}>SUD Score</Text>
+                                <Text style={[styles.textLabel, {color: colors.text}]}>SUD Score</Text>
                             </View>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                         </View>
 
                         <View style={styles.sudRow}>
                             <MaterialCommunityIcons
                                 name={emotionIcon[globals.DiaryLog.sudScore]}
                                 size={80}
-                                color={Colors.light.primary}
+                                color={colors.primary}
                             />
-                            <Text style={styles.sudLabel}>{globals.DiaryLog.sudScore}</Text>
+                            <Text style={[styles.sudLabel, {color: colors.text}]}>{globals.DiaryLog.sudScore}</Text>
                         </View>
 
                         <View style={styles.labelContainer}>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                             <View style={styles.attrContainer}>
-                                <Text style={styles.textLabel}>Skills</Text>
+                                <Text style={[styles.textLabel, {color: colors.text}]}>Skills</Text>
                             </View>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                         </View>
                         {globals.DiaryLog.skills.length > 0 ? (
                             globals.DiaryLog.skills.map((item, index) => (
-                                <View style={styles.attrBubble} key={index}>
-                                    <Text style={styles.attrStyle}>
+                                <View style={[styles.attrBubble, {borderColor: colors.primary, backgroundColor: colors.primary}]} key={index}>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>
                                         {skillData[item.id - 1].name}
                                     </Text>
-                                    <Text style={styles.attrStyle}>{item.value}</Text>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>{item.value}</Text>
                                 </View>
                             ))
                         ) : (
-                                <Text>None</Text>
+                                <Text style={{color: colors.text}}>None</Text>
                             )}
 
                         <View style={styles.labelContainer}>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                             <View style={styles.attrContainer}>
-                                <Text style={styles.textLabel}>Emotions</Text>
+                                <Text style={[styles.textLabel, {color: colors.text}]}>Emotions</Text>
                             </View>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                         </View>
                         {globals.DiaryLog.emotions.length > 0 ? (
                             globals.DiaryLog.emotions.map((item, index) => (
-                                <View style={styles.attrBubble} key={index}>
-                                    <Text style={styles.attrStyle}>
+                                <View style={[styles.attrBubble, {borderColor: colors.primary, backgroundColor: colors.primary}]} key={index}>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>
                                         {emotionData[item.id - 1].name}
                                     </Text>
-                                    <Text style={styles.attrStyle}>{item.value}</Text>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>{item.value}</Text>
                                 </View>
                             ))
                         ) : (
-                                <Text>None</Text>
+                                <Text style={{color: colors.text}}>None</Text>
                             )}
 
                         <View style={styles.labelContainer}>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                             <View style={styles.attrContainer}>
-                                <Text style={styles.textLabel}>Targets</Text>
+                                <Text style={[styles.textLabel, {color: colors.text}]}>Targets</Text>
                             </View>
-                            <View style={styles.horz} />
+                            <View style={[styles.horz, {backgroundColor: colors.text}]} />
                         </View>
                         {globals.DiaryLog.targets.length > 0 ? (
                             globals.DiaryLog.targets.map((item, index) => (
-                                <View style={styles.attrBubble} key={index}>
-                                    <Text style={styles.attrStyle}>
+                                <View style={[styles.attrBubble, {borderColor: colors.primary, backgroundColor: colors.primary}]} key={index}>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>
                                         {targetData[item.id - 1].name}
                                     </Text>
-                                    <Text style={styles.attrStyle}>{item.value}</Text>
+                                    <Text style={[styles.attrStyle, {color: colors.background}]}>{item.value}</Text>
                                 </View>
                             ))
                         ) : (
-                                <Text>None</Text>
+                                <Text style={{color: colors.text}}>None</Text>
                             )}
 
                         {globals.DiaryLog.note.length > 0 ? (
                             <View>
                                 <View style={styles.labelContainer}>
-                                    <View style={styles.horz} />
+                                    <View style={[styles.horz, {backgroundColor: colors.text}]} />
                                     <View style={styles.attrContainer}>
-                                        <Text style={styles.textLabel}>Notes</Text>
+                                        <Text style={[styles.textLabel, {color: colors.text}]}>Notes</Text>
                                     </View>
-                                    <View style={styles.horz} />
+                                    <View style={[styles.horz, {backgroundColor: colors.text}]} />
                                 </View>
                                 <View style={styles.noteContainer}>
                                     <Text>{globals.DiaryLog.note}</Text>
@@ -204,12 +199,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: "bold",
-        color: Colors.light.primary,
         paddingVertical: 15,
     },
     subtitle: {
         fontSize: 18,
-        color: "gray",
     },
     icon: {
         paddingLeft: 20,
@@ -221,7 +214,6 @@ const styles = StyleSheet.create({
     horz: {
         flex: 1,
         height: 1,
-        backgroundColor: "black",
     },
     textLabel: {
         marginHorizontal: 5,
@@ -239,7 +231,6 @@ const styles = StyleSheet.create({
     dateLabel: {
         fontSize: 22,
         fontWeight: "bold",
-        color: Colors.light.primary,
     },
     sudRow: {
         width: "100%",
@@ -249,7 +240,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    moodIcon: {},
     sudLabel: {
         fontSize: 30,
         fontWeight: "bold",
@@ -273,6 +263,7 @@ const styles = StyleSheet.create({
     attrStyle: {
         paddingHorizontal: 10,
         fontSize: 16,
+        fontWeight: '500'
     },
     noteContainer: {
         width: Dimensions.get("screen").width - 40,

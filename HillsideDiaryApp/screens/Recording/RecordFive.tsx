@@ -7,11 +7,13 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
 import TargetInputs from '../../components/targetInputs/index';
 import NoteInput from '../../components/noteInputs';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useTheme } from '@react-navigation/native';
 import globals from '../../global/globals';
 import {Attr} from '../../types';
 
 export default function RecordFive({ navigation }: RecordingStackScreenProps<'RecordFive'>) {
+
+  const {colors} = useTheme();
 
   const cleanUpAttr = () => {
     const newSkills = globals.DiaryLog.skills.filter((item) => item.value > 0);
@@ -28,9 +30,9 @@ export default function RecordFive({ navigation }: RecordingStackScreenProps<'Re
     <View style={styles.container}>
         <View style={styles.header}>
             <TouchableWithoutFeedback onPress={() => { navigation.goBack()}}>
-                <Ionicons name="arrow-back-sharp" size={40} style={styles.icon}></Ionicons>
+                <Ionicons name="arrow-back-sharp" size={40} style={{color: colors.text, paddingLeft: 20}}></Ionicons>
             </TouchableWithoutFeedback>
-            <Text style={styles.title}>Back</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.noteContainer}>
             <NoteInput navigation={navigation} route={"RecordFive" as unknown as RouteProp<RecordingStackParamList, "RecordFive">} />

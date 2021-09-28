@@ -6,12 +6,15 @@ import DiaryEntityComponent from '../diaryEntity/index';
 import { DiaryEntity } from '../../types';
 import { AntDesign } from '@expo/vector-icons';
 import DiaryEntityView from '../diaryEntityView';
+import { useTheme } from '@react-navigation/native';
 
 export type curDate = {
     curDate: Date
 }
 
 const DiaryEntityList = (props: curDate) => {
+
+    const {colors} = useTheme();
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
@@ -46,15 +49,15 @@ const DiaryEntityList = (props: curDate) => {
             <View style={styles.datePickerContainer}>
                 <TouchableWithoutFeedback onPress={onPressLeft}>
                     <View>
-                        <AntDesign name="left" style={styles.datePickerIcon} size={35}/>     
+                        <AntDesign name="left" color={colors.primary} size={35}/>     
                     </View>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback>
-                    <Text style={styles.datePickerText}>{monthNames[month]} {year}</Text>
+                    <Text style={[styles.datePickerText, {color: colors.primary}]}>{monthNames[month]} {year}</Text>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback onPress={onPressRight}>
                     <View>
-                        <AntDesign name="right" style={styles.datePickerIcon} size={35}/>
+                        <AntDesign name="right" color={colors.primary} size={35}/>
                     </View>
                 </TouchableWithoutFeedback>
             </View>

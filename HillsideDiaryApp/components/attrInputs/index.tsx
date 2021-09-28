@@ -3,7 +3,8 @@ import { View, Text, Dimensions } from 'react-native';
 import { Slider } from 'react-native-elements';
 import globals from '../../global/globals';
 import styles from './styles';
-import { Attr, Emotion } from '../../types';
+import { Attr } from '../../types';
+import { useTheme } from '@react-navigation/native';
 
 export type AttrProps = {
     name: string,
@@ -14,6 +15,8 @@ export type AttrProps = {
 
 
 const AttrInputs = (props: AttrProps) => {
+
+    const {colors} = useTheme();
 
     const updatelocalAttr=(newAttr: Attr)=>{
         switch (newAttr.type){
@@ -55,7 +58,7 @@ const AttrInputs = (props: AttrProps) => {
     var [curValue, setValue] = useState(0);
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{name}</Text>
+            <Text style={[styles.title, {color: colors.text}]}>{name}</Text>
             <View style={styles.rightSide}>
                 <Slider
                     value={curValue}
@@ -76,7 +79,7 @@ const AttrInputs = (props: AttrProps) => {
                     minimumTrackTintColor="gray"
                     maximumTrackTintColor="lightgray"
                     />
-                <Text style={styles.value}>{curValue}</Text>
+                <Text style={[styles.value, {color: colors.primary}]}>{curValue}</Text>
             </View>
         </View>
     )

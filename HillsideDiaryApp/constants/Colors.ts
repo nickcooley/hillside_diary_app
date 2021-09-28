@@ -1,23 +1,30 @@
+import { Theme } from "@react-navigation/native";
+
 const primaryColorLight = '#2f95dc';
 const primaryColorDark = '#6ea5ff';
 const tintColorDark = '#fff';
 
 export default {
   light: {
-    primary: primaryColorLight,
-    text: '#000',
-    background: '#fff',
-    tint: primaryColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: primaryColorLight,
-
-  },
+    dark: false,
+    colors: {
+      primary: primaryColorLight,
+      background: '#fff',
+      card: '#fff',
+      text: '#000',
+      border: primaryColorLight,
+      notification: primaryColorLight,
+    }
+  } as Theme,
   dark: {
-    primary: primaryColorDark,
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
-  },
+    dark: true,
+    colors: {
+      primary: primaryColorDark,
+      background: '#000',
+      card: '#000',
+      text: '#fff',
+      border: primaryColorDark,
+      notification: primaryColorDark,
+    }
+  } as Theme,
 };

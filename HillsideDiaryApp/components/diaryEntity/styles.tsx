@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     diaryEnties: {
@@ -7,12 +6,10 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
-        backgroundColor: 'white',
         width: '95%',
         margin: 10,
         borderWidth: 2,
         borderRadius: 10,
-        borderColor: Colors.light.primary,
     },
     dateContainer: {
         flexDirection: 'row',
@@ -25,12 +22,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     date: {
-        color: 'black',
         fontWeight: 'bold',
         fontSize: 22,
     },
     time: {
-        color: 'gray',
         fontSize: 18,
         paddingLeft: 10,
     },
@@ -58,8 +53,6 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         borderWidth: 2,
         borderRadius: 8,
-        borderColor: Colors.light.primary,
-        backgroundColor: Colors.light.primary,
         justifyContent: 'space-between'
     },
     labelofAttr: {

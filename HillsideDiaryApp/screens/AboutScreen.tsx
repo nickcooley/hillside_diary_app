@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Image, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
+import Colors from '../constants/Colors';
 import Accordion from 'react-native-collapsible/Accordion';
+import { color } from 'react-native-reanimated';
 
 //Dummy Content Text
 const BACON_IPSUM =
@@ -87,8 +89,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white',
-    paddingTop: Dimensions.get('screen').height / 3,
+    backgroundColor: Colors.light.colors.background,
+    paddingTop: Dimensions.get('screen').height / 8,
   },
   headerText: {
     width: '95%',
@@ -101,6 +103,8 @@ const styles = StyleSheet.create({
     margin: 4,
     marginHorizontal: 10,
     paddingLeft: 15,
+    color: 'white',
+    backgroundColor: Colors.light.colors.primary,
   },
   content: {
     paddingHorizontal: 30,
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     height: 280,
-    width: '100%'
+    width: '100%',
   },
   logo: {
     width: 141,
@@ -119,6 +123,7 @@ const styles = StyleSheet.create({
   logoText: {
     alignSelf: 'center',
     fontSize: 24,
-    paddingBottom: 20
+    paddingBottom: 20,
+    color: Colors.light.colors.text,
   }
 });

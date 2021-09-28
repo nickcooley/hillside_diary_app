@@ -101,7 +101,7 @@ export default function SkillScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleRow}>
-        <Foundation name="social-skillshare" color={Colors.light.primary} size={30} />
+        <Foundation name="social-skillshare" color={Colors.light.colors.primary} size={30} />
         <Text style={styles.title}>Skills</Text>
       </View>
       <Text style={styles.subtitle}>Tap on a skill to learn more</Text>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: Colors.light.background,
+    backgroundColor: Colors.light.colors.background,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     paddingBottom: 50,
   },
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: Colors.light.primary,
+    color: Colors.light.colors.primary,
     paddingHorizontal: 5
   },
   subtitle: {
@@ -146,9 +146,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 10,
     marginVertical: 10,
+    backgroundColor: Colors.light.colors.primary,
   },
   headerActiveContainer: {
-    backgroundColor: Colors.light.primary,
+    backgroundColor: Colors.light.colors.primary,
     justifyContent: 'center',
     borderStyle: 'solid',
     borderColor: 'white',
@@ -159,6 +160,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   headerText: {
+    color: 'white',
     fontSize: 20,
     fontWeight: '500',
     margin: 4,

@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { AntDesign, Feather, FontAwesome, Foundation, Ionicons } from '@expo/vector-icons';
+import { AntDesign, Feather, Foundation, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, useTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable, View } from 'react-native';
+import { ColorSchemeName, View } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -20,7 +20,6 @@ import { RecordingStackParamList, RootStackParamList, RootTabParamList, RootTabS
 import LinkingConfiguration from './LinkingConfiguration';
 import AboutScreen from '../screens/AboutScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import RecordScreen from '../screens/Recording/RecordFirst';
 import RecordFirst from '../screens/Recording/RecordFirst';
 import RecordSecond from '../screens/Recording/RecordSecond';
 import RecordThree from '../screens/Recording/RecordThree';
@@ -28,12 +27,13 @@ import RecordFour from '../screens/Recording/RecordFour';
 import RecordFive from '../screens/Recording/RecordFive';
 import RecordConfirmation from '../screens/Recording/RecordConfirmation';
 import RecordReview from '../screens/Recording/RecordReview';
+import { colors } from 'react-native-elements';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={colorScheme === 'dark' ? Colors.dark : Colors.light}>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -66,14 +66,14 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
+  const theme = useTheme();
   const iconSize = 30;
 
   return (
     <BottomTab.Navigator
       initialRouteName="Diary"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: theme.colors.primary,
       }}>
       <BottomTab.Screen
         name="Diary"
@@ -105,7 +105,7 @@ function BottomTabNavigator() {
                 height: 45,
                 width: 45,
                 borderRadius: 60 / 2,
-                backgroundColor: Colors.light.primary,
+                backgroundColor: theme.colors.primary,
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>

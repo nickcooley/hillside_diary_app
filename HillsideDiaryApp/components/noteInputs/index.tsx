@@ -7,8 +7,11 @@ import globals from '../../global/globals';
 import { RecordingStackScreenProps } from '../../types';
 import AttrInputs from '../attrInputs/index';
 import styles from './styles';
+import { useTheme } from '@react-navigation/native';
 
 export default function NoteInput({ navigation }: RecordingStackScreenProps<'RecordFive'>)  {
+
+    const {colors} = useTheme();
 
     const startMsg = 'Type here...'
     const [value, onChangeText] = useState(startMsg);
@@ -24,7 +27,7 @@ export default function NoteInput({ navigation }: RecordingStackScreenProps<'Rec
             <TouchableWithoutFeedback
                 onPress={Keyboard.dismiss}
             >
-                <Text style={styles.title}>Private Note</Text>
+                <Text style={[styles.title, {color: colors.primary}]}>Private Note</Text>
             </TouchableWithoutFeedback>
             <View style={styles.inputContainer}>
                 <TextInput

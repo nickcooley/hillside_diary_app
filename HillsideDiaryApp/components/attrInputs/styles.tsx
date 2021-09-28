@@ -1,5 +1,4 @@
 import { Dimensions, StyleSheet } from "react-native";
-import Colors from "../../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     value: {
-        color: Colors.light.primary,
         fontSize: 16,
         fontWeight: '500',
         paddingLeft: 20

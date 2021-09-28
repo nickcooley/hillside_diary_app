@@ -5,17 +5,19 @@ import { RecordingStackParamList, RecordingStackScreenProps } from '../../types'
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import EmotionInputs from '../../components/emotionInputs';
-import { Button } from 'react-native-elements';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useTheme } from '@react-navigation/native';
 
 export default function RecordThree({ navigation }: RecordingStackScreenProps<'RecordThree'>) {
+
+  const {colors} = useTheme();
+
   return (
     <View style={styles.container}>
         <View style={styles.header}>
             <TouchableWithoutFeedback onPress={() => { navigation.goBack()}}>
-                <Ionicons name="arrow-back-sharp" size={40} style={styles.icon}></Ionicons>
+                <Ionicons name="arrow-back-sharp" size={40} style={{color: colors.text, paddingLeft: 20}}></Ionicons>
             </TouchableWithoutFeedback>
-            <Text style={styles.title}>Back</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.emotionContainer}>
             <EmotionInputs navigation={navigation} route={"RecordThree" as unknown as RouteProp<RecordingStackParamList, "RecordThree">} />

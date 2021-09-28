@@ -6,11 +6,13 @@ import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import globals from '../../global/globals';
 import { RecordingStackScreenProps } from '../../types';
+import { useTheme } from '@react-navigation/native';
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default function RecordFirst({ navigation }: RecordingStackScreenProps<'RecordFirst'>) {
 
+  const {colors} = useTheme();
 
   let day: number;
   let month: number;
@@ -48,10 +50,10 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
   
   return (
     <View style={styles.container}>
-      <Text style={{fontSize: 18}}>Recording at</Text>
+      <Text style={{fontSize: 18, color: colors.text}}>Recording at</Text>
       <View style={styles.dateContainer}>
-        <Text style={styles.date}>{currentDate}</Text>
-        <Text style={styles.time}>{currentTime}</Text>
+        <Text style={[styles.date, {color: colors.primary}]}>{currentDate}</Text>
+        <Text style={[styles.time, {color: colors.text}]}>{currentTime}</Text>
       </View>
       <View style={styles.sudContainer}>
         <SUDScorePicker />
@@ -73,7 +75,6 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
     paddingTop: Dimensions.get('screen').height / 10
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
   date: {
     fontSize: 35,
     fontWeight: 'bold',
-    color: Colors.light.primary,
     paddingVertical: 10
   },
   time: {

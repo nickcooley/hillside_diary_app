@@ -5,16 +5,19 @@ import { RecordingStackParamList, RecordingStackScreenProps } from '../../types'
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SkillInputs from '../../components/skillInputs';
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useTheme } from '@react-navigation/native';
 
 export default function RecordSecond({ navigation }: RecordingStackScreenProps<'RecordSecond'>) {
+
+  const {colors} = useTheme();
+  
   return (
     <View style={styles.container}>
         <View style={styles.header}>
             <TouchableWithoutFeedback onPress={() => { navigation.goBack()}}>
-                <Ionicons name="arrow-back-sharp" size={40} style={styles.icon}></Ionicons>
+                <Ionicons name="arrow-back-sharp" size={40} style={{color: colors.text, paddingLeft: 20}}></Ionicons>
             </TouchableWithoutFeedback>
-            <Text style={styles.title}>Back</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.skillContainer}>
             <SkillInputs navigation={navigation} route={"RecordSecond" as unknown as RouteProp<RecordingStackParamList, "RecordSecond">} />
@@ -40,9 +43,6 @@ const styles = StyleSheet.create({
   },
   title: {
       fontSize: 20,
-  },
-  icon: {
-    paddingLeft: 20
   },
   buttonContainer: {
     flex: 1,

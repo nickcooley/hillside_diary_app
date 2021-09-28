@@ -1,24 +1,26 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { View, FlatList, TouchableHighlight, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 import { Slider } from 'react-native-elements';
 import styles from './styles';
 import global from '../../global/globals'
-import Colors from '../../constants/Colors';
+import { useTheme } from '@react-navigation/native';
 
 
 const SUDScorePicker = () => {
 
-    const emotionIcon = ['emoticon-cry-outline', 'emoticon-frown-outline', 'emoticon-confused-outline', 'emoticon-neutral-outline', 'emoticon-happy-outline', 'emoticon-outline', 'emoticon-excited-outline'];
-    const emotionText = ['Depressed', 'Sad', 'Unsure', 'Neutral', 'Alright', 'Happy', 'Thrilled'];
+    const {colors} = useTheme();
+
+    const emotionIcon = ['emoticon-cry-outline', 'emoticon-frown-outline', 'emoticon-confused-outline', 'emoticon-neutral-outline', 'emoticon-happy-outline', 'emoticon-outline', 'emoticon-excited-outline'] as any[];
+    const emotionText = ['Depressed', 'Sad', 'Unsure', 'Neutral', 'Alright', 'Happy', 'Thrilled'] as any[];
 
     var [curValue, setValue] = useState(0);
      
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Currently, how are you feeling?</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Currently, how are you feeling?</Text>
             <View style={styles.iconContainer}>
-                <MaterialCommunityIcons name={emotionIcon[curValue]} size={150} color={Colors.light.primary} />
+                <MaterialCommunityIcons name={emotionIcon[curValue]} size={150} color={colors.primary} />
            </View>
            <View style={styles.sliderContainer}>
                <Slider
@@ -35,7 +37,7 @@ const SUDScorePicker = () => {
                     minimumTrackTintColor="gray"
                     maximumTrackTintColor="lightgray"
                 />
-                <Text style={{paddingTop: 10}}>I am feeling {emotionText[curValue]} - {curValue}</Text>
+                <Text style={{paddingTop: 10, color: colors.text}}>I am feeling {emotionText[curValue]} - {curValue}</Text>
             </View>
         </View>
     )

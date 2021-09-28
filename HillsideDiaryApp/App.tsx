@@ -4,10 +4,11 @@ import { Appearance } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import Navigation from './navigation';
+import useColorScheme from './hooks/useColorScheme';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const colorScheme = Appearance.getColorScheme();
+  const colorScheme = useColorScheme();
 
   if (!isLoadingComplete) {
     return null;

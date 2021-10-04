@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, FlatList, TouchableHighlight, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, FlatList, Text, TouchableWithoutFeedback } from 'react-native';
 import styles from './styles';
 import entitiesData from '../../data/entitiesData';
-import DiaryEntityComponent from '../diaryEntity/index';
-import { DiaryEntity } from '../../types';
-import { AntDesign } from '@expo/vector-icons';
+import { DiaryEntity, RecordDiaryStackScreenProps } from '../../types';
+import { AntDesign, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import DiaryEntityView from '../diaryEntityView';
 import { useTheme } from '@react-navigation/native';
 
@@ -12,13 +11,13 @@ export type curDate = {
     curDate: Date
 }
 
-const DiaryEntityList = (props: curDate) => {
+export default function DiaryEntityList({ navigation }: RecordDiaryStackScreenProps<'DiaryList'>) {
 
     const {colors} = useTheme();
 
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-    const {curDate} = props;
+    const curDate = new Date();
     const curMonth = curDate.getMonth();
     const curYear = curDate.getFullYear();
     var [month, setMonth] = useState(curMonth);
@@ -46,6 +45,14 @@ const DiaryEntityList = (props: curDate) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.headerContainer}>
+                <View>
+                    <Text style={[styles.title, {color: colors.text}]}>Your Diary</Text>
+                </View>
+                <TouchableWithoutFeedback onPress={()=>{navigation.navigate('RecordFirst');}}>
+                    <Ionicons name='add-circle-outline' color={colors.primary} size={45}/>
+                </TouchableWithoutFeedback>
+            </View>
             <View style={styles.datePickerContainer}>
                 <TouchableWithoutFeedback onPress={onPressLeft}>
                     <View>
@@ -71,5 +78,3 @@ const DiaryEntityList = (props: curDate) => {
         </View>
     )
 }
-
-export default DiaryEntityList;

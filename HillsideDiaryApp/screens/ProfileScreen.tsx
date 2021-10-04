@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { StyleSheet, Dimensions, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '@react-navigation/native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import { RootTabScreenProps } from '../types';
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation}: RootTabScreenProps<'Profile'>) {
 
   const {colors} = useTheme();
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: colors.primary}]}>
-      <Text style={styles.welcomeMsg}>Welcome</Text>
+      <View style={styles.header}>
+        <Text style={styles.welcomeMsg}>Welcome</Text>
+      </View>
       <View style={styles.profileContainer}>
         <View style={styles.profileRow}>
           <View style={styles.iconContainer}>
@@ -77,10 +79,17 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 30,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '95%',
+    paddingBottom: 5
+  },
   welcomeMsg: {
     color: 'white',
     fontSize: 35,
-    fontWeight: '600',
+    fontWeight: 'bold',
     paddingLeft: 20,
     paddingBottom: 10,
   },

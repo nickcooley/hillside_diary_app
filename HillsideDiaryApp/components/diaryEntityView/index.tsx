@@ -17,7 +17,7 @@ export type EntityViewProps = {
     diaryEntity: DiaryEntity,
 }
 
-const DiaryEntityView = (props: EntityViewProps) => {
+export default function DiaryEntityView(props: EntityViewProps) {
     const {diaryEntity} = props;
     const {colors} = useTheme();
 
@@ -114,5 +114,3 @@ const DiaryEntityView = (props: EntityViewProps) => {
        </View>
     )
 }
-
-export default DiaryEntityView;

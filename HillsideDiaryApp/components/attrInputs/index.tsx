@@ -72,7 +72,7 @@ const AttrInputs = (props: AttrProps) => {
                         setValue(curValue = value);
                     }}
                     minimumValue={0}
-                    maximumValue={6}
+                    maximumValue={10}
                     step={1}
                     trackStyle={{ height: 5, width: Dimensions.get('screen').width / 3 }}
                     thumbStyle={{ backgroundColor: 'dodgerblue', height: 25, width: 25}}

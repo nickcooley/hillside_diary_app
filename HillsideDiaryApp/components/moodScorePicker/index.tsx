@@ -7,55 +7,40 @@ import global from '../../global/globals'
 import { useTheme } from '@react-navigation/native';
 
 
-const SUDScorePicker = () => {
+const MoodScorePicker = () => {
 
     const {colors} = useTheme();
 
-    var [curValue, setValue] = useState(0);
-    var [curColor, setColor] = useState('green');
+    const emotionIcon = ['emoticon-cry-outline', 'emoticon-frown-outline', 'emoticon-confused-outline', 'emoticon-neutral-outline', 'emoticon-happy-outline', 'emoticon-outline', 'emoticon-excited-outline'] as any[];
+    const emotionText = ['Depressed', 'Sad', 'Unsure', 'Neutral', 'Alright', 'Happy', 'Thrilled'] as any[];
 
-    const determineColor = (score: number) => {
-        if (score >= 0 && score < 3){
-            return 'green';
-        }
-        if (score >= 3 && score < 6){
-            return 'orange';
-        }
-        if (score >= 6 && score < 9){
-            return 'orangered';
-        }
-        else{
-            return 'red';
-        }
-    }
+    var [curValue, setValue] = useState(0);
      
     return (
         <View style={styles.container}>
-            <Text style={[styles.title, {color: colors.text}]}>Currently, how are you feeling?</Text>
+            <Text style={[styles.title, {color: colors.text}]}>Currently, what is your mood?</Text>
             <View style={styles.iconContainer}>
-                <View style={[styles.scoreContainer, {borderColor: curColor, backgroundColor: curColor}]}>
-                    <Text style={styles.score}>{curValue}</Text>
-                </View>
+                <MaterialCommunityIcons name={emotionIcon[curValue]} size={150} color={colors.primary} />
            </View>
            <View style={styles.sliderContainer}>
                <Slider
                     value={curValue}
                     onValueChange={(value: number) => {
-                        global.SUDScore.score = value;
-                        setValue(curValue = value);
-                        setColor(curColor = determineColor(curValue));
+                        global.DiaryLog.moodScore = value;
+                        setValue(curValue = value)
                     }}
                     minimumValue={0}
-                    maximumValue={10}
+                    maximumValue={6}
                     step={1}
                     trackStyle={{ height: 10, width: Dimensions.get('screen').width - 100 }}
                     thumbStyle={{ backgroundColor: 'dodgerblue'}}
                     minimumTrackTintColor="gray"
                     maximumTrackTintColor="lightgray"
                 />
+                <Text style={{paddingTop: 10, color: colors.text, fontSize: 16}}>I am feeling {emotionText[curValue]}</Text>
             </View>
         </View>
     )
 }
 
-export default SUDScorePicker;
+export default MoodScorePicker;

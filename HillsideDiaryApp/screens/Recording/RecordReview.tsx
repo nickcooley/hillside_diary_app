@@ -1,7 +1,6 @@
 import * as React from "react";
-import { Dimensions, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { Text, View } from "../../components/Themed";
-import { RecordingStackScreenProps } from "../../types";
+import { Dimensions, StyleSheet, TouchableWithoutFeedback, Text, View } from "react-native";
+import { RecordDiaryStackScreenProps } from "../../types";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import globals from "../../global/globals";
 import skillData from "../../data/skillData";
@@ -13,7 +12,7 @@ import entitiesData from "../../data/entitiesData";
 import { useTheme } from "@react-navigation/native";
 import useColorScheme from '../../hooks/useColorScheme';
 
-export default function RecordReview({ navigation }: RecordingStackScreenProps<"RecordReview">) {
+export default function RecordReview({ navigation }: RecordDiaryStackScreenProps<"RecordReview">) {
 
     const {colors} = useTheme();
     const light = useColorScheme();
@@ -66,11 +65,11 @@ export default function RecordReview({ navigation }: RecordingStackScreenProps<"
 
                         <View style={styles.sudRow}>
                             <MaterialCommunityIcons
-                                name={emotionIcon[globals.DiaryLog.sudScore]}
+                                name={emotionIcon[globals.DiaryLog.moodScore]}
                                 size={80}
                                 color={colors.primary}
                             />
-                            <Text style={[styles.sudLabel, {color: colors.text}]}>{globals.DiaryLog.sudScore}</Text>
+                            <Text style={[styles.sudLabel, {color: colors.text}]}>{globals.DiaryLog.moodScore}</Text>
                         </View>
 
                         <View style={styles.labelContainer}>

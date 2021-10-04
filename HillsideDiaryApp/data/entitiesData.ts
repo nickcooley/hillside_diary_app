@@ -9,7 +9,7 @@ export default [
         month: 9,
         day: 1,
         year: 2021,
-        sudScore: 5,
+        moodScore: 5,
         skills: [
             {
                 id: skillData[1].id,
@@ -38,7 +38,7 @@ export default [
         month: 9,
         day: 5,
         year: 2021,
-        sudScore: 6,
+        moodScore: 6,
         skills: [
             {
                 id: skillData[1].id,
@@ -79,7 +79,7 @@ export default [
         month: 9,
         day: 17,
         year: 2021,
-        sudScore: 1,
+        moodScore: 1,
         skills: [
             {
                 id: skillData[3].id,

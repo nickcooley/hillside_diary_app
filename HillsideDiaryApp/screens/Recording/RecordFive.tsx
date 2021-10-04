@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import { Text, View } from '../../components/Themed';
-import { RecordingStackParamList, RecordingStackScreenProps } from '../../types';
+import { Dimensions, StyleSheet, View, Text } from 'react-native';
+import { RecordDiaryStackParamList, RecordDiaryStackScreenProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
-import TargetInputs from '../../components/targetInputs/index';
 import NoteInput from '../../components/noteInputs';
 import { RouteProp, useTheme } from '@react-navigation/native';
 import globals from '../../global/globals';
 import {Attr} from '../../types';
 
-export default function RecordFive({ navigation }: RecordingStackScreenProps<'RecordFive'>) {
+export default function RecordFive({ navigation }: RecordDiaryStackScreenProps<'RecordFive'>) {
 
   const {colors} = useTheme();
 
@@ -35,7 +33,7 @@ export default function RecordFive({ navigation }: RecordingStackScreenProps<'Re
             <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.noteContainer}>
-            <NoteInput navigation={navigation} route={"RecordFive" as unknown as RouteProp<RecordingStackParamList, "RecordFive">} />
+            <NoteInput navigation={navigation} route={"RecordFive" as unknown as RouteProp<RecordDiaryStackParamList, "RecordFive">} />
         </View>
         <View style={styles.buttonContainer}>
           <Button style={styles.button} title="Review" onPress={()=>{

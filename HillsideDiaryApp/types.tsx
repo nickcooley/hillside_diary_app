@@ -1,12 +1,11 @@
 /**
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
- */
+*/
 
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import RecordReview from './screens/Recording/RecordReview';
 
 declare global {
   namespace ReactNavigation {
@@ -27,7 +26,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 
 export type RootTabParamList = {
   Diary: undefined;
-  Skills: undefined;
+  Scores: undefined;
   Recording: undefined;
   About: undefined;
   Profile: undefined;
@@ -38,7 +37,8 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> = Composit
   NativeStackScreenProps<RootStackParamList>
 >;
 
-export type RecordingStackParamList = {
+export type RecordDiaryStackParamList = {
+  DiaryList: undefined;
   RecordFirst: undefined;
   RecordSecond: undefined;
   RecordThree: undefined;
@@ -48,10 +48,32 @@ export type RecordingStackParamList = {
   RecordConfirmation: undefined;
 };
 
-export type RecordingStackScreenProps<Screen extends keyof RecordingStackParamList> = NativeStackScreenProps<
-RecordingStackParamList,
-  Screen
->;
+export type RecordDiaryStackScreenProps<Screen extends keyof RecordDiaryStackParamList> = NativeStackScreenProps<RecordDiaryStackParamList,Screen>;
+
+export type SUDStackParamList = {
+  ScoreList: undefined;
+  RecordSUD: undefined;
+}
+
+export type SUDStackScreenProps<Screen extends keyof SUDStackParamList> = NativeStackScreenProps<SUDStackParamList, Screen>;
+
+export type RecordScoreStackParamList = {
+  ScoreRecord: undefined;
+  ScoreConfirmed: undefined;
+};
+
+export type RecordScoreStackScreenProps<Screen extends keyof RecordScoreStackParamList> = NativeStackScreenProps<RecordScoreStackParamList,Screen>;
+
+
+export type SUDEntity = {
+  id: number;
+  time: string;
+  date: string;
+  month: number;
+  day: number;
+  year: number;
+  sudScore: number;
+}
 
 export type DiaryEntity = {
   id: number;
@@ -60,7 +82,7 @@ export type DiaryEntity = {
   month: number;
   day: number;
   year: number;
-  sudScore: number;
+  moodScore: number;
   skills: [Attr];
   targets: [Attr];
   emotions: [Attr];

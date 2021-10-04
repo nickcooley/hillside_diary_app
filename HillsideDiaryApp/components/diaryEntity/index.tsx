@@ -26,13 +26,12 @@ const DiaryEntityComponent = (props: DiaryEntityProps) => {
                     <Text style={[styles.date, {color: colors.text}]}>{monthNames[diaryEntity.month-1]} {diaryEntity.day}, {diaryEntity.year}</Text>
                     <View style={styles.timeContainer}>
                         {includedNote ? <FontAwesome name={'sticky-note-o'} size={20} color={colors.primary}/> : <View />}
-                        <Text style={[styles.time, {color: dark ? 'lightgray' : 'gray'}]}>{diaryEntity.time}</Text>
+                        <Text style={[styles.time, {color: 'gray'}]}>{diaryEntity.time}</Text>
                     </View>
                 </View>
                 <View style={styles.contentContainer}>
                     <View style={styles.sudContainer}>
-                        <MaterialCommunityIcons name={emotionIcon[diaryEntity.sudScore]} size={75} color={colors.primary} />
-                        <Text style={[styles.sudScore, {color: colors.text}]}>{diaryEntity.sudScore}</Text>
+                        <MaterialCommunityIcons name={emotionIcon[diaryEntity.moodScore]} size={80} color={colors.primary} style={{justifyContent:'center'}}/>
                     </View>
                     <View style={styles.attrContainer}>
                         <View style={[styles.singleAttrContainer, {borderColor: colors.primary, backgroundColor: colors.primary}]}>

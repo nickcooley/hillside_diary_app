@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         borderBottomStartRadius: 20,
         borderBottomEndRadius: 20,
         paddingBottom: 10,
+        marginBottom: 15
     },
     labelContainer: {
         flexDirection: 'row', 

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import { Text, View } from '../../components/Themed';
-import { RecordingStackParamList, RecordingStackScreenProps } from '../../types';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { RecordDiaryStackParamList, RecordDiaryStackScreenProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import TargetInputs from '../../components/targetInputs/index';
 import { RouteProp, useTheme } from '@react-navigation/native';
 
-export default function RecordFour({ navigation }: RecordingStackScreenProps<'RecordFour'>) {
+export default function RecordFour({ navigation }: RecordDiaryStackScreenProps<'RecordFour'>) {
 
   const {colors} = useTheme();
 
@@ -20,7 +19,7 @@ export default function RecordFour({ navigation }: RecordingStackScreenProps<'Re
             <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.targetContainer}>
-            <TargetInputs navigation={navigation} route={"RecordFour" as unknown as RouteProp<RecordingStackParamList, "RecordFour">}/>
+            <TargetInputs navigation={navigation} route={"RecordFour" as unknown as RouteProp<RecordDiaryStackParamList, "RecordFour">}/>
         </View>
     </View>
   );

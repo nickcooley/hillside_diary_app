@@ -10,20 +10,6 @@ const styles = StyleSheet.create({
     iconContainer: {
         paddingVertical: 20
     },
-    score: {
-        color: 'white',
-        fontSize: 60,
-    },
-    scoreContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginVertical: 15,
-        borderRadius: 100,
-        borderWidth: 2,
-        marginHorizontal: 15,
-        height: Dimensions.get('screen').height / 9,
-        width: Dimensions.get('screen').width / 4,
-    },
     title: {
         fontSize: 24
     },

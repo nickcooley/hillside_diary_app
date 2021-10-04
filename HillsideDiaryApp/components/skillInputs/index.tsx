@@ -2,12 +2,12 @@ import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import skillData from '../../data/skillData';
-import { RecordingStackScreenProps } from '../../types';
+import { RecordDiaryStackScreenProps } from '../../types';
 import AttrInputs from '../attrInputs/index';
 import styles from './styles';
 import { useTheme } from '@react-navigation/native';
 
-export default function SkillInputs({ navigation }: RecordingStackScreenProps<'RecordSecond'>)  {
+export default function SkillInputs({ navigation }: RecordDiaryStackScreenProps<'RecordSecond'>)  {
 
     const {colors} = useTheme();
 

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import { Text, View } from '../../components/Themed';
-import { RecordingStackParamList, RecordingStackScreenProps } from '../../types';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { RecordDiaryStackParamList, RecordDiaryStackScreenProps, } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import EmotionInputs from '../../components/emotionInputs';
 import { RouteProp, useTheme } from '@react-navigation/native';
 
-export default function RecordThree({ navigation }: RecordingStackScreenProps<'RecordThree'>) {
+export default function RecordThree({ navigation }: RecordDiaryStackScreenProps<'RecordThree'>) {
 
   const {colors} = useTheme();
 
@@ -20,7 +19,7 @@ export default function RecordThree({ navigation }: RecordingStackScreenProps<'R
             <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.emotionContainer}>
-            <EmotionInputs navigation={navigation} route={"RecordThree" as unknown as RouteProp<RecordingStackParamList, "RecordThree">} />
+            <EmotionInputs navigation={navigation} route={"RecordThree" as unknown as RouteProp<RecordDiaryStackParamList, "RecordThree">} />
         </View>
     </View>
   );

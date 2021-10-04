@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, SafeAreaView, StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import SUDScorePicker from '../../components/sudScorePicker';
-import { Text, View } from '../../components/Themed';
-import Colors from '../../constants/Colors';
+import SUDScorePicker from '../../components/moodScorePicker';
 import globals from '../../global/globals';
-import { RecordingStackScreenProps } from '../../types';
+import { RecordDiaryStackScreenProps } from '../../types';
 import { useTheme } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export default function RecordFirst({ navigation }: RecordingStackScreenProps<'RecordFirst'>) {
+export default function RecordFirst({ navigation }: RecordDiaryStackScreenProps<'RecordFirst'>) {
 
   const {colors} = useTheme();
 
@@ -49,7 +48,15 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
   var [currentTime, setTime] = useState(getCurrentTime());
   
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+          <TouchableWithoutFeedback onPress={() => { navigation.goBack()}}>
+              <View style={{flexDirection:'row', alignItems: 'center'}}>
+                <Ionicons name="arrow-back-sharp" size={40} style={{color: colors.text, paddingLeft: 20}} />
+                <Text style={[styles.title, {color: colors.text}]}>Back</Text>
+              </View>
+          </TouchableWithoutFeedback>
+      </View>
       <Text style={{fontSize: 18, color: colors.text}}>Recording at</Text>
       <View style={styles.dateContainer}>
         <Text style={[styles.date, {color: colors.primary}]}>{currentDate}</Text>
@@ -65,11 +72,11 @@ export default function RecordFirst({ navigation }: RecordingStackScreenProps<'R
           globals.DiaryLog.year = year;
           globals.DiaryLog.date = currentDate;
           globals.DiaryLog.time = currentTime;
-          globals
+          globals.DiaryLog
           navigation.navigate('RecordSecond');
         }} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -78,6 +85,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: Dimensions.get('screen').height / 10
+  },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingVertical: 20
   },
   dateContainer: {
     flexDirection: 'column',
@@ -99,9 +113,9 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
   },
   buttonContainer: {
-    width: Dimensions.get('screen').width - 30,
+    width: Dimensions.get('screen').width - 40,
     justifyContent: 'flex-end',
-    paddingBottom: 20
+    paddingVertical: 20
   },
   button: {
     width: Dimensions.get('screen').width - 30,

@@ -4,12 +4,12 @@ import { Button, Input } from 'react-native-elements';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import emotionData from '../../data/emotionData';
 import globals from '../../global/globals';
-import { RecordingStackScreenProps } from '../../types';
+import { RecordDiaryStackScreenProps } from '../../types';
 import AttrInputs from '../attrInputs/index';
 import styles from './styles';
 import { useTheme } from '@react-navigation/native';
 
-export default function NoteInput({ navigation }: RecordingStackScreenProps<'RecordFive'>)  {
+export default function NoteInput({ navigation }: RecordDiaryStackScreenProps<'RecordFive'>)  {
 
     const {colors} = useTheme();
 

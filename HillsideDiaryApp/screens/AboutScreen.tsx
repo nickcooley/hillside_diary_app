@@ -1,9 +1,10 @@
-import * as React from 'react';
-import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
-import { Text, View } from '../components/Themed';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions, View, Text } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
-import { useTheme } from '@react-navigation/native';
+import { Theme, useTheme } from '@react-navigation/native';
 import Colors from '../constants/Colors';
+import { RootTabScreenProps } from '../types';
+import { useMemo } from 'react';
 
 //Dummy Content Text
 const BACON_IPSUM =
@@ -25,68 +26,71 @@ const CONTENT = [
   },
 ];
 
-class AccordionView extends React.Component {
+export type AccordionProps = {
+  styles: any
+}
+
+const AccordionView = (props: AccordionProps) => {
+
+  const {styles} = props;
   
-  state = {
-    activeSections: [],
-  };
+  var [activeSections, setState] = useState([]);
 
   //Controls which menu item is currently expanded
-  setSections = (sections: any) => {
-    this.setState({
-      activeSections: sections.includes(undefined) ? [] : sections,
-    });
+  const setSections = (sections: any) => {
+    setState(activeSections= sections.includes(undefined) ? [] : sections);
   };
 
   //Renders Accordion menu item header
-  renderHeader = (section: any, _: any, isActive: boolean) => {
+  const renderHeader = (section: any, _: any, isActive: boolean) => {
     return (
       <Text style={styles.headerText}>{section.title}</Text>
     );
   };
 
   //Renders Accordion menu item content
-  renderContent(section: any, _: any, isActive: boolean) {
+  const renderContent = (section: any, _: any, isActive: boolean) => {
     return (
       <Text style={styles.content}>{section.content}</Text>
     );
   }
 
-  render() {
-    const { activeSections } = this.state;
-
-    //Accordion Menu
-    return (
-      <View>
-        <ScrollView style={styles.scrollContainer}>
-          <Accordion
-            activeSections={activeSections}
-            sections={CONTENT}
-            touchableComponent={TouchableOpacity}
-            renderHeader={this.renderHeader}
-            renderContent={this.renderContent}
-            onChange={this.setSections}
-            renderAsFlatList={false}
-          />
-        </ScrollView>
-      </View>
-    );
-  }
-}
-
-export default function AboutScreen() {
-  const {colors} = useTheme();
-
+ 
+  //Accordion Menu
   return (
-    <View style={[styles.container, {backgroundColor: colors.background}]}>
-      <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
-      <Text style={[styles.logoText, {color: colors.text}]}>HILLSIDE</Text>
-      <AccordionView/>
+    <View>
+      <ScrollView style={styles.scrollContainer}>
+        <Accordion
+          activeSections={activeSections}
+          sections={CONTENT}
+          touchableComponent={TouchableOpacity}
+          renderHeader={renderHeader}
+          renderContent={renderContent}
+          onChange={setSections}
+          renderAsFlatList={false}
+        />
+      </ScrollView>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+
+export default function AboutScreen({ navigation }: RootTabScreenProps<'About'>) {
+
+  const theme = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
+
+  return (
+    <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <Image style={styles.logo} source={require('../assets/images/HillsideLogo.png')}/>
+      <Text style={[styles.logoText, {color: theme.colors.text}]}>HILLSIDE</Text>
+      <AccordionView styles={styles}/>
+    </View>
+  );
+}
+
+const createStyles = (theme: Theme) => 
+StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -94,21 +98,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Dimensions.get('screen').height / 8,
   },
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
   headerText: {
     width: '95%',
+    color: 'white',
+    backgroundColor: theme.colors.primary,
+    borderColor: theme.colors.primary,
     fontSize: 22,
     fontWeight: '500',
     borderStyle: 'solid',
-    borderColor: 'grey',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 30,
     margin: 4,
     marginHorizontal: 10,
     paddingLeft: 15,
-    color: 'white',
-    backgroundColor: Colors.light.colors.primary,
   },
   content: {
+    color: theme.colors.text,
     paddingHorizontal: 30,
     paddingVertical: 10,
     fontSize: 16,

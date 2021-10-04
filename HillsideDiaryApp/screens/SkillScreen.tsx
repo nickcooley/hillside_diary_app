@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Platform, SafeAreaView, StatusBar, ScrollView, Dimensions } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { StyleSheet, TouchableOpacity, SafeAreaView, ScrollView, Dimensions, Text, View } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import Colors from '../constants/Colors';
 import { useTheme } from '@react-navigation/native';
@@ -103,12 +102,13 @@ export default function SkillScreen() {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: colors.background}]}>
-      <View style={styles.titleRow}>
-        <Foundation name="social-skillshare" color={colors.primary} size={30} />
+      <View style={[styles.titleRow, {paddingTop: Dimensions.get('screen').height/15}]}>
+        <Foundation name="social-skillshare" color={colors.primary} size={45} />
         <Text style={[styles.title, {color: colors.primary}]}>Skills</Text>
       </View>
-      <Text style={styles.subtitle}>Tap on a skill to learn more</Text>
-
+      <View style={styles.titleRow}>
+        <Text style={styles.subtitle}>Tap on a skill to learn more</Text>
+      </View>
       <AccordionView/>
     </SafeAreaView>
   );
@@ -118,19 +118,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    paddingBottom: 50,
+    paddingBottom: 50,    
   },
   titleRow: {
-    paddingVertical: 20,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    paddingHorizontal: 15,
+    paddingTop: 10,
   },
   title: {
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: 'bold',
-    paddingHorizontal: 5
+    paddingHorizontal: 10
   },
   subtitle: {
     fontSize: 16,

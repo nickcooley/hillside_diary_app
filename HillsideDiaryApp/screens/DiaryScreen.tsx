@@ -1,20 +1,19 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { RecordDiaryStackScreenProps, RecordDiaryStackParamList } from '../types';
 import DiaryEntityList from '../components/diaryEntityList';
-import { Theme, useTheme } from '@react-navigation/native';
+import { RouteProp, Theme, useTheme } from '@react-navigation/native';
 import { colors } from 'react-native-elements';
 
 
-export default function DiaryScreen({ navigation }: RootTabScreenProps<'Diary'>) {
+export default function DiaryScreen({ navigation }: RecordDiaryStackScreenProps<'DiaryList'>) {
   const curDate = new Date();
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   
   return (
     <View style={styles.container}>
-      <DiaryEntityList curDate={curDate}/>
+      <DiaryEntityList navigation={navigation} route={'Diary' as unknown as RouteProp<RecordDiaryStackParamList, "DiaryList">} />
     </View>
   );
 }
@@ -27,6 +26,6 @@ StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: Dimensions.get('window').height / 12,
-    paddingBottom: 110
+    paddingBottom: 230
   },
 });

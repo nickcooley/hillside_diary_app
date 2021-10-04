@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import targetData from '../../data/targetData';
-import globals from '../../global/globals';
-import { RecordingStackScreenProps } from '../../types';
+import { RecordDiaryStackScreenProps } from '../../types';
 import AttrInputs from '../attrInputs/index';
 import styles from './styles';
 import { useTheme } from '@react-navigation/native';
 
-export default function TargetInputs({ navigation }: RecordingStackScreenProps<'RecordFour'>)  {
+export default function TargetInputs({ navigation }: RecordDiaryStackScreenProps<'RecordFour'>)  {
 
     const {colors} = useTheme();
 

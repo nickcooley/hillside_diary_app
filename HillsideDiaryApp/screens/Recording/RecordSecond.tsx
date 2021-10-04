@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
-import { Text, View } from '../../components/Themed';
-import { RecordingStackParamList, RecordingStackScreenProps } from '../../types';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { RecordDiaryStackParamList, RecordDiaryStackScreenProps } from '../../types';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import SkillInputs from '../../components/skillInputs';
 import { RouteProp, useTheme } from '@react-navigation/native';
 
-export default function RecordSecond({ navigation }: RecordingStackScreenProps<'RecordSecond'>) {
+export default function RecordSecond({ navigation }: RecordDiaryStackScreenProps<'RecordSecond'>) {
 
   const {colors} = useTheme();
   
@@ -20,7 +19,7 @@ export default function RecordSecond({ navigation }: RecordingStackScreenProps<'
             <Text style={[styles.title, {color: colors.text}]}>Back</Text>
         </View>
         <View style={styles.skillContainer}>
-            <SkillInputs navigation={navigation} route={"RecordSecond" as unknown as RouteProp<RecordingStackParamList, "RecordSecond">} />
+            <SkillInputs navigation={navigation} route={"RecordSecond" as unknown as RouteProp<RecordDiaryStackParamList, "RecordSecond">} />
         </View>
     </View>
   );

@@ -127,6 +127,7 @@ StyleSheet.create({
   scrollContainer: {
     height: 280,
     width: '100%',
+    marginBottom: 210,
   },
   logo: {
     width: 141,

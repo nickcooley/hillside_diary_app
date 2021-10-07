@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    paddingTop: 30,
+    //paddingTop: 30,
   },
   header: {
     flexDirection: 'row',
@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
   },
   welcomeMsg: {
     color: 'white',
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: 'bold',
     paddingLeft: 20,
-    paddingBottom: 10,
+    paddingBottom: 5,
   },
   profileContainer: {
     marginHorizontal: 10,
@@ -103,18 +103,18 @@ const styles = StyleSheet.create({
   profileRow: {
     flexDirection: 'row',
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 12,
     borderRadius: 20,
   },
   iconContainer: {
-    paddingLeft: 10,
+    paddingLeft: 0,
   },
   piContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
   },
   fName: {
-    fontSize: 31,
+    fontSize: 24,
     fontWeight: 'bold'
   },
   lName: {
@@ -122,14 +122,14 @@ const styles = StyleSheet.create({
     color: 'gray'
   },
   infoContainer: {
-    marginVertical: 20,
+    marginVertical: 13,
     marginHorizontal: 10,
     borderWidth: 1,
     borderRadius: 10,
     borderColor: 'white',
     backgroundColor: 'white',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 7,
   },
   horz: {
     flex: 1,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     color: 'white',
     marginHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 5,
     width: Dimensions.get('screen').width/2.4,
   },
 });

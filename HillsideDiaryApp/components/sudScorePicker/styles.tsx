@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     scoreContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 15,
+        marginVertical: 5,
         borderRadius: 100,
         borderWidth: 2,
         marginHorizontal: 15,
@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         width: Dimensions.get('screen').width / 4,
     },
     title: {
-        fontSize: 24
+        paddingHorizontal: 10,
+        fontSize: 20,
     },
     sliderContainer: {
         alignItems: 'stretch'

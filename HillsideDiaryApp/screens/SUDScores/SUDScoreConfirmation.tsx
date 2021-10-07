@@ -22,6 +22,7 @@ export default function SUDScoreConfirmation({ navigation }: RecordScoreStackScr
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 18,
-    color: 'gray'
+    color: 'gray',
+    paddingHorizontal: "10%",
   },
 });

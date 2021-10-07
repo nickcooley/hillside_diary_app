@@ -71,12 +71,12 @@ StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: Dimensions.get('window').height / 12,
-    paddingBottom: 230
+    paddingBottom: 230,
   },
   header: {
-    fontSize: 18,
+    fontSize: 20,
     color: theme.colors.text,
-    paddingTop: 30,
+    paddingTop: 10,
   },
   dateContainer: {
     flexDirection: 'column',
@@ -84,13 +84,13 @@ StyleSheet.create({
   },
   date: {
     color: theme.colors.primary,
-    fontSize: 35,
+    fontSize: 24,
     fontWeight: 'bold',
     paddingVertical: 10
   },
   time: {
     color: theme.colors.text,
-    fontSize: 30,
+    fontSize: 20,
   },
   title: {
     color: theme.colors.text,
@@ -102,12 +102,12 @@ StyleSheet.create({
     paddingLeft: 20
   },
   sudContainer: {
-    paddingVertical: 25,
+    //paddingVertical: 25,
   },
   buttonContainer: {
     width: Dimensions.get('screen').width - 40,
     justifyContent: 'flex-end',
-    paddingVertical: 20
+    paddingVertical: 20,
   },
   button: {
     width: Dimensions.get('screen').width - 30,

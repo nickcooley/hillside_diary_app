@@ -16,6 +16,7 @@ import DiaryScreen from '../screens/DiaryScreen';
 import { RecordDiaryStackParamList, RecordScoreStackParamList, RootStackParamList, RootTabParamList, SUDStackParamList } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import AboutScreen from '../screens/AboutScreen';
+import LoginScreen from '../screens/LoginScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import RecordFirst from '../screens/Recording/RecordFirst';
 import RecordSecond from '../screens/Recording/RecordSecond';

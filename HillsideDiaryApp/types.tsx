@@ -66,50 +66,81 @@ export type RecordScoreStackScreenProps<Screen extends keyof RecordScoreStackPar
 
 
 export type SUDEntity = {
-  id: number;
-  time: string;
-  date: string;
-  month: number;
-  day: number;
-  year: number;
-  sudScore: number;
+  score_uuid: string;
+  date_added: Date;
+  score: number;
+  patient_uuid: string;
 }
 
 export type DiaryEntity = {
-  id: number;
-  time: string;
-  date: string;
-  month: number;
-  day: number;
-  year: number;
-  moodScore: number;
-  skills: [Attr];
-  targets: [Attr];
-  emotions: [Attr];
+  entry_uuid: string;
+  skills: [Attributes];
+  targets: [Attributes];
+  emotions: [Attributes];
+  date_added: Date;
+  date_modified: Date;
+  mood_score: number;
   note: string;
+  patient_uuid: Date;
+}
+
+export type Attributes = {
+  attribute_uuid: string,
+  date_created: Date,
+  date_modified: Date,
+  diary_entity: string,
+  rating: number,
+  related_attribute_uuid: string,
+  type: string
 }
 
 export type Skill = {
-  id: number,
-  name: string,
+  skill_uuid: string,
+  skill_name: string,
+  skill_description: string,
+  date_added: Date,
+  date_modified: Date,
+  active: boolean,
   category: string,
+  creator_uuid: string
 }
 
 export type Emotion = {
-  id: number,
-  name: string,
-  category: string,
+  emotion_uuid: string,
+  emotion_name: string,
+  emotion_description: string,
+  date_added: Date,
+  date_modified: Date,
+  active: boolean,
+  is_for_all: boolean,
+  creator_uuid: string,
+  patient_uuid: string
 }
 
 export type Target = {
-  id: number,
-  name: string,
+  target_uuid: string,
+  target_name: string,
+  target_description: string,
+  date_added: Date,
+  date_modified: Date,
+  active: boolean,
+  is_for_all: boolean,
   category: string,
+  creator_uuid: string,
+  patient_uuid: string,
 }
 
-export type Attr = {
-  id: number
-  type: string,
-  value: number
+export type User = {
+  user_uuid: string,
+  last_login: Date,
+  is_superuser: boolean,
+  first_name: string,
+  last_name: string,
+  phone_number: string,
+  email: string,
+  date_joined: Date,
+  is_staff: boolean,
+  email_is_verified: boolean,
+  phone_number_is_verified: boolean,
+  is_active: boolean
 }
-

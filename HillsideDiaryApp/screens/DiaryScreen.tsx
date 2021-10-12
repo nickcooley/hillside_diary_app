@@ -7,7 +7,6 @@ import { colors } from 'react-native-elements';
 
 
 export default function DiaryScreen({ navigation }: RecordDiaryStackScreenProps<'DiaryList'>) {
-  const curDate = new Date();
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   

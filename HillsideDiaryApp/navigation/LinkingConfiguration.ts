@@ -7,11 +7,8 @@
 import { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
 import { RootStackParamList } from '../types';
-import RecordThree from '../screens/Recording/RecordThree';
-import RecordFour from '../screens/Recording/RecordFour';
-import RecordFive from '../screens/Recording/RecordFive';
-import RecordConfirmation from '../screens/Recording/RecordConfirmation';
-import RecordReview from '../screens/Recording/RecordReview';
+import DiaryScreen from '../screens/DiaryScreen';
+
 
 
 
@@ -21,17 +18,23 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          Diary: {},
-          Skills: {},
+          Diary: {
+            screens: {
+              DiaryScreen: 'DiaryList',
+              RecordFirst: 'RecordFirst',
+              RecordSecond: 'RecordSecond',
+              RecordThird: 'RecordThird',
+              RecordFour: 'RecordFour',
+              RecordFive: 'RecordFive',
+              RecordReview: 'RecordReview',
+              RecordConfirmation: 'RecordConfirmation',
+            }
+          },
+          Scores: {},
           Recording: {
             screens: {
-              RecordFirst: 'recordFirst',
-              RecordSecond: 'recordSecond',
-              RecordThree: 'recordThree',
-              RecordFour: 'recordFour',
-              RecordFive: 'recordFive',
-              RecordReview: 'recordReview',
-              RecordConfirmation: 'recordConfirmation'
+              RecordSUD: 'ScoreRecord',
+              SUDConfirmation: 'ScoreConfirmed'
             }
           },
           About: {},

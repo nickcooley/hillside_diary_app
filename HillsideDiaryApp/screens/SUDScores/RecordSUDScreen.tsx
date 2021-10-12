@@ -46,17 +46,7 @@ export default function RecordSUDScreen({ navigation }: RecordScoreStackScreenPr
       </View>
       <View style={styles.buttonContainer}>
         <Button style={styles.button} title="Submit" onPress={()=>{
-          scoreData.push({
-            id: 6,
-            time: getCurrentTime(),
-            date: getCurrentDate(),
-            month: moment().month(),
-            day: moment().date(),
-            year: moment().year(),
-            sudScore: globals.SUDScore.score
-          });
-          console.log(scoreData);
-          navigation.navigate('ScoreConfirmed');
+          
         }} />
       </View>
     </SafeAreaView>

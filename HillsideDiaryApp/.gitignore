@@ -1,9 +1,11 @@
 # Yarn
 yarn.lock
 
-
 # Pods
 Podfile.lock
 
-
+#Workspace Data
 contents.xcworkspacedata
+
+
+global/apiConfig.ts

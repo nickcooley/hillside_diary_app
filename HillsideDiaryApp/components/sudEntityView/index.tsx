@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { SUDEntity } from '../../types';
 import styles from './styles';
 import { useTheme } from '@react-navigation/native';
+import moment from 'moment';
 
 export type EntityViewProps = {
     sudEntity: SUDEntity,
@@ -13,7 +14,7 @@ export default function SUDEntityView(props: EntityViewProps) {
     const {colors} = useTheme();
 
     const determineColor = () => {
-        const score = sudEntity.sudScore
+        const score = sudEntity.score
         if (score >= 0 && score < 3){
             return 'green';
         }
@@ -34,12 +35,12 @@ export default function SUDEntityView(props: EntityViewProps) {
         <View style={styles.sudEnties}>
             <View style={styles.container}>
                 <View style={{flexDirection:'column'}}>
-                    <Text style={{color: colors.primary, fontSize: 25, fontWeight: 'bold'}}>{sudEntity.date}</Text>
-                    <Text style={{color: 'gray', fontSize: 16, paddingTop: 5}}>{sudEntity.time}</Text>
+                    <Text style={{color: colors.primary, fontSize: 25, fontWeight: 'bold'}}>{moment(sudEntity.date_added).format("MMM DD, YYYY")}</Text>
+                    <Text style={{color: 'gray', fontSize: 16, paddingTop: 5}}>{moment(sudEntity.date_added).format("hh:mm A")}</Text>
                 </View>
                 <View>
                     <View style={[styles.scoreBubble, {backgroundColor: bubbleColor, borderColor: bubbleColor}]}>
-                        <Text style={styles.bubbleText}>{sudEntity.sudScore}</Text>
+                        <Text style={styles.bubbleText}>{sudEntity.score}</Text>
                     </View>
                 </View>
             </View>

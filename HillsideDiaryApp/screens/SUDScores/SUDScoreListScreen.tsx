@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, View } from 'react-native';
 import { SUDStackParamList, SUDStackScreenProps } from '../../types';
-import DiaryEntityList from '../../components/diaryEntityList';
 import { RouteProp, Theme, useTheme } from '@react-navigation/native';
-import { colors } from 'react-native-elements';
 import SUDEntityList from '../../components/sudEntityList/index';
 
 

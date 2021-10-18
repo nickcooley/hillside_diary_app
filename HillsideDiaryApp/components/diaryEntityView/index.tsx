@@ -7,9 +7,10 @@ import DiaryEntityComponent from '../diaryEntity/index';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useTheme } from '@react-navigation/native';
 import axios from 'axios'
-import moment from 'moment';
 import apiConfigs from '../../global/apiConfig';
 import globals from '../../global/globals';
+import * as SecureStore from 'expo-secure-store';
+
 
 
 export type EntityViewProps = {
@@ -25,48 +26,58 @@ export default function DiaryEntityView(props: EntityViewProps) {
     let [targets, setTargets] = useState<Target[]>([]);
     let [readyForRender, setReadyForRender] = useState(false);
 
-    const collectSkills = () => {
+    async function getAccessToken(key:string) {
+        let result = await SecureStore.getItemAsync(key);
+        if (result) {
+            const accessToken = "Bearer " + result;
+            collectSkills(accessToken);
+        } else {
+            alert('No values stored under that key.');
+        }
+    }
+
+    const collectSkills = (accessTok: string) => {
         axios({
           "method": "GET",
           "url": globals.apiCalls.skillURi,
           "headers": {
-            "Authorization": apiConfigs.tempToken,
+            "Authorization": accessTok,
           }, "params": {
           }
         })
           .then((response) => {
             setSkills(response.data['results']);
-            collectEmotions();
+            collectEmotions(accessTok);
           })
           .catch((error) => {
             console.log(error)
           })
     }
 
-    const collectEmotions = () => {
+    const collectEmotions = (accessTok: string) => {
         axios({
           "method": "GET",
           "url": globals.apiCalls.emotionURi,
           "headers": {
-            "Authorization": apiConfigs.tempToken,
+            "Authorization": accessTok,
           }, "params": {
           }
         })
           .then((response) => {
             setEmotions(response.data['results']);
-            collectTargets();
+            collectTargets(accessTok);
           })
           .catch((error) => {
             console.log(error)
           })
     }
 
-    const collectTargets = () => {
+    const collectTargets = (accessTok: string) => {
         axios({
           "method": "GET",
           "url": globals.apiCalls.targetURi,
           "headers": {
-            "Authorization": apiConfigs.tempToken,
+            "Authorization": accessTok,
           }, "params": {
           }
         })
@@ -80,7 +91,7 @@ export default function DiaryEntityView(props: EntityViewProps) {
           })
     }
     useEffect(() => {
-        collectSkills();
+        getAccessToken("access");
     }, []);
 
     if (readyForRender) {

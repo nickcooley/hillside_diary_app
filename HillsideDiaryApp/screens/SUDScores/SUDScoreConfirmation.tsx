@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@react-navigation/native';
 import useColorScheme from '../../hooks/useColorScheme';
 import { RecordScoreStackScreenProps } from '../../types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function SUDScoreConfirmation({ navigation }: RecordScoreStackScreenProps<'ScoreConfirmed'>) {
 
@@ -15,6 +16,9 @@ export default function SUDScoreConfirmation({ navigation }: RecordScoreStackScr
         <Feather name={'check-circle'} size={75} style={{color: colors.primary}}/>
         <Text style={[styles.title, {color: colors.text}]}>Thank You!</Text>
         <Text style={[styles.subtitle, {color: dark ? 'lightgray' : 'gray'}]}>Your score has been recorded</Text>
+        <TouchableOpacity onPress={()=>{navigation.navigate('ScoreRecord')}}>
+          <Text style={{color: colors.primary, paddingVertical: 15, fontSize: 25}}>Close</Text>
+        </TouchableOpacity>
     </View>
   );
 }

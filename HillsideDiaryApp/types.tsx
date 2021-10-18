@@ -14,9 +14,11 @@ declare global {
 }
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
+  App: NavigatorScreenParams<RootTabParamList> | undefined;
+  Auth: undefined;
   NotFound: undefined;
+  Login: undefined;
+  Register: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -74,9 +76,9 @@ export type SUDEntity = {
 
 export type DiaryEntity = {
   entry_uuid: string;
-  skills: [Attributes];
-  targets: [Attributes];
-  emotions: [Attributes];
+  skills: [Skill];
+  targets: [Target];
+  emotions: [Emotion];
   date_added: Date;
   date_modified: Date;
   mood_score: number;
@@ -84,10 +86,10 @@ export type DiaryEntity = {
   patient_uuid: Date;
 }
 
-export type Attributes = {
+export type Attribute = {
   attribute_uuid: string,
-  date_created: Date,
-  date_modified: Date,
+  date_created: string,
+  date_modified: string,
   diary_entity: string,
   rating: number,
   related_attribute_uuid: string,
@@ -105,18 +107,6 @@ export type Skill = {
   creator_uuid: string
 }
 
-export type Emotion = {
-  emotion_uuid: string,
-  emotion_name: string,
-  emotion_description: string,
-  date_added: Date,
-  date_modified: Date,
-  active: boolean,
-  is_for_all: boolean,
-  creator_uuid: string,
-  patient_uuid: string
-}
-
 export type Target = {
   target_uuid: string,
   target_name: string,
@@ -129,6 +119,19 @@ export type Target = {
   creator_uuid: string,
   patient_uuid: string,
 }
+
+export type Emotion = {
+  emotion_uuid: string,
+  emotion_name: string,
+  emotion_description: string,
+  date_added: Date,
+  date_modified: Date,
+  active: boolean,
+  is_for_all: boolean,
+  creator_uuid: string,
+  patient_uuid: string
+}
+
 
 export type User = {
   user_uuid: string,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, Dimensions } from 'react-native';
+import { View, FlatList, Text, Dimensions, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { SUDStackScreenProps, SUDEntity } from '../../types';
 import { useTheme } from '@react-navigation/native';
@@ -10,6 +10,10 @@ import moment from 'moment';
 import axios from 'axios';
 import apiConfigs from '../../global/apiConfig';
 import globals from '../../global/globals';
+import * as SecureStore from 'expo-secure-store';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Ionicons } from '@expo/vector-icons';
+
 
 export default function SUDEntityList({ navigation }: SUDStackScreenProps<'ScoreList'>) {
 
@@ -26,26 +30,32 @@ export default function SUDEntityList({ navigation }: SUDStackScreenProps<'Score
         setYear(year = selectedDate.year());
     }
 
-    const collectScores = () => {
-        axios({
-          "method": "GET",
-          "url": globals.apiCalls.scoreURi,
-          "headers": {
-            "Authorization": apiConfigs.tempToken,
-          }, "params": {
-          }
-        })
-          .then((response) => {
-            setEntries(response.data['results']);
-            setReadyForRender(true);
-          })
-          .catch((error) => {
-            console.log(error)
-          })
+    async function getAccessToken(key:string) {
+        let result = await SecureStore.getItemAsync(key);
+        if (result) {
+            const accessTok = "Bearer " + result;
+            axios({
+                "method": "GET",
+                "url": globals.apiCalls.scoreURi,
+                "headers": {
+                  "Authorization": accessTok,
+                }, "params": {
+                }
+              })
+                .then((response) => {
+                  setEntries(response.data['results']);
+                  setReadyForRender(true);
+                })
+                .catch((error) => {
+                  console.log(error)
+                })
+        } else {
+            alert('No values stored under that key.');
+        }
     }
 
     useEffect(() => {
-        collectScores();
+        getAccessToken('access');
     }, []);
 
     if (readyForRender) {
@@ -66,11 +76,16 @@ export default function SUDEntityList({ navigation }: SUDStackScreenProps<'Score
                         iconContainer={{flex: 0.1}}
                         onDateSelected={onDateSelected}
                         selectedDate={moment()}
-                        startingDate={moment()}
+                        startingDate={moment().subtract(1, 'day')}
                     />
                 </View>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>SUD Scores</Text>
+                    <TouchableOpacity onPress={()=> {
+                        getAccessToken('access');
+                    }}>
+                        <Ionicons name="refresh" size={35}/>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.listContainer}>
                     {scoreEntries.some(entity => moment(entity.date_added).date() == day && moment(scoreEntries[0].date_added).add(1, 'month').month() == month) ? 

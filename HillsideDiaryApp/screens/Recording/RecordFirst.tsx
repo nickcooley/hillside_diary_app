@@ -6,6 +6,7 @@ import globals from '../../global/globals';
 import { RecordDiaryStackScreenProps } from '../../types';
 import { useTheme } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import moment from 'moment';
 
 const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -67,12 +68,7 @@ export default function RecordFirst({ navigation }: RecordDiaryStackScreenProps<
       </View>
       <View style={styles.buttonContainer}>
         <Button style={styles.button} title="Next" onPress={()=>{
-          globals.DiaryLog.day = day;
-          globals.DiaryLog.month = month;
-          globals.DiaryLog.year = year;
-          globals.DiaryLog.date = currentDate;
-          globals.DiaryLog.time = currentTime;
-          globals.DiaryLog
+          globals.DiaryLog.date_added = moment().toISOString()
           navigation.navigate('RecordSecond');
         }} />
       </View>

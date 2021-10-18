@@ -1,14 +1,18 @@
 import React, { useMemo } from 'react';
-import { StyleSheet, Dimensions, View } from 'react-native';
+import { StyleSheet, Dimensions, View, Text } from 'react-native';
 import { RecordDiaryStackScreenProps, RecordDiaryStackParamList } from '../types';
 import DiaryEntityList from '../components/diaryEntityList';
 import { RouteProp, Theme, useTheme } from '@react-navigation/native';
 import { colors } from 'react-native-elements';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import useLoginService from '../hooks/useLoginService';
+import { useAuth } from '../contexts/Auth';
 
 
 export default function DiaryScreen({ navigation }: RecordDiaryStackScreenProps<'DiaryList'>) {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  
   
   return (
     <View style={styles.container}>

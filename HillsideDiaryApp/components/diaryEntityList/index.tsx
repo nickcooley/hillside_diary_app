@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, FlatList, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { DiaryEntity, RecordDiaryStackScreenProps } from '../../types';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
@@ -7,8 +7,9 @@ import DiaryEntityView from '../diaryEntityView';
 import { useTheme } from '@react-navigation/native';
 import globals from '../../global/globals';
 import axios from 'axios';
-import apiConfigs from '../../global/apiConfig';
 import moment from 'moment';
+import * as SecureStore from 'expo-secure-store';
+
 
 export default function DiaryEntityList({ navigation }: RecordDiaryStackScreenProps<'DiaryList'>) {
 
@@ -21,6 +22,31 @@ export default function DiaryEntityList({ navigation }: RecordDiaryStackScreenPr
     let [year, setYear] = useState(curDate.getFullYear());
     let [readyForRender, setReadyForRender] = useState(false);
     let [diaryEntries, setEntries] = useState<DiaryEntity[]>([]);
+
+    async function getAccessToken(key:string) {
+        let result = await SecureStore.getItemAsync(key);
+        if (result) {
+            const accessTok = "Bearer " + result;
+            axios({
+                "method": "GET",
+                "url": globals.apiCalls.diaryEntityURi,
+                "headers": {
+                  "Authorization": accessTok,
+                }, "params": {
+                }
+              })
+                .then((response) => {
+                  setEntries(response.data['results']);
+                  setReadyForRender(true);
+                })
+                .catch((error) => {
+                  console.log(error)
+                })
+        } else {
+            alert('No values stored under that key.');
+        }
+    }
+
 
     const onPressLeft = () => {
         if (month == 0){
@@ -41,26 +67,8 @@ export default function DiaryEntityList({ navigation }: RecordDiaryStackScreenPr
         }
     }
 
-    const collectEntries = () => {
-        axios({
-          "method": "GET",
-          "url": globals.apiCalls.diaryEntityURi,
-          "headers": {
-            "Authorization": apiConfigs.tempToken,
-          }, "params": {
-          }
-        })
-          .then((response) => {
-            setEntries(response.data['results']);
-            setReadyForRender(true);
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-    }
-
     useEffect(() => {
-        collectEntries();
+        getAccessToken("access");
     }, []);
 
 
@@ -71,9 +79,16 @@ export default function DiaryEntityList({ navigation }: RecordDiaryStackScreenPr
                     <View>
                         <Text style={[styles.title, {color: colors.text}]}>Your Diary</Text>
                     </View>
-                    <TouchableWithoutFeedback onPress={()=>{navigation.navigate('RecordFirst');}}>
-                        <Ionicons name='add-circle-outline' color={colors.primary} size={45}/>
-                    </TouchableWithoutFeedback>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <TouchableOpacity onPress={()=> {
+                            getAccessToken('access');
+                        }} style={{paddingRight: 20}}>
+                            <Ionicons name="refresh" size={40} />
+                        </TouchableOpacity>
+                        <TouchableWithoutFeedback onPress={()=>{navigation.navigate('RecordFirst');}}>
+                            <Ionicons name='add-circle-outline' color={colors.primary} size={45}/>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
                 <View style={styles.datePickerContainer}>
                     <TouchableWithoutFeedback onPress={onPressLeft}>

@@ -7,11 +7,15 @@ import global from '../../global/globals'
 import { useTheme } from '@react-navigation/native';
 
 
-const SUDScorePicker = () => {
+export type payload = {
+    curValue: number, 
+    setValue: React.Dispatch<React.SetStateAction<number>>
+}
+
+const SUDScorePicker = (prop: payload) => {
 
     const {colors} = useTheme();
 
-    var [curValue, setValue] = useState(0);
     var [curColor, setColor] = useState('green');
 
     const determineColor = (score: number) => {
@@ -34,16 +38,15 @@ const SUDScorePicker = () => {
             <Text style={[styles.title, {color: colors.text}]}>Currently, how are you feeling?</Text>
             <View style={styles.iconContainer}>
                 <View style={[styles.scoreContainer, {borderColor: curColor, backgroundColor: curColor}]}>
-                    <Text style={styles.score}>{curValue}</Text>
+                    <Text style={styles.score}>{prop.curValue}</Text>
                 </View>
            </View>
            <View style={styles.sliderContainer}>
                <Slider
-                    value={curValue}
+                    value={prop.curValue}
                     onValueChange={(value: number) => {
-                        global.SUDScore.score = value;
-                        setValue(curValue = value);
-                        setColor(curColor = determineColor(curValue));
+                        prop.setValue(value);
+                        setColor(curColor = determineColor(value));
                     }}
                     minimumValue={0}
                     maximumValue={10}

@@ -3,13 +3,15 @@ import { View, Text, Dimensions } from 'react-native';
 import { Slider } from 'react-native-elements';
 import globals from '../../global/globals';
 import styles from './styles';
-import { Attr } from '../../types';
+import { Skill, Emotion, Target, Attribute } from '../../types';
 import { useTheme } from '@react-navigation/native';
+import moment from 'moment';
 
 export type AttrProps = {
     name: string,
-    id: number,
+    uId: string,
     type: string,
+    value: number
 }
 
 
@@ -18,33 +20,33 @@ const AttrInputs = (props: AttrProps) => {
 
     const {colors} = useTheme();
 
-    const updatelocalAttr=(newAttr: Attr)=>{
+    const updatelocalAttr=(newAttr: Attribute)=>{
         switch (newAttr.type){
             case 'Skill':
-                if (globals.DiaryLog.skills.some((item: Attr) => item.id === newAttr.id)){
-                        const result = globals.DiaryLog.skills.filter((item: Attr) => item.id == newAttr.id);
+                if (globals.DiaryLog.skills.some((item: Attribute) => item.related_attribute_uuid === newAttr.related_attribute_uuid)){
+                        const result = globals.DiaryLog.skills.filter((item: Attribute) => item.related_attribute_uuid == newAttr.related_attribute_uuid)
                         if (result[0]){
-                            result[0].value = newAttr.value;
+                            result[0] = newAttr;
                         }
                 }else{
                     globals.DiaryLog.skills.push(newAttr);
                 }
                 break;
             case 'Emotion':
-                if (globals.DiaryLog.emotions.some((item: Attr) => item.id === newAttr.id)){
-                    const result = globals.DiaryLog.emotions.filter((item: Attr) => item.id == newAttr.id);
+                if (globals.DiaryLog.emotions.some((item: Attribute) => item.related_attribute_uuid === newAttr.related_attribute_uuid)){
+                    const result = globals.DiaryLog.emotions.filter((item: Attribute) => item.related_attribute_uuid == newAttr.related_attribute_uuid);
                     if (result[0]){
-                        result[0].value = newAttr.value;
+                        result[0] = newAttr;
                     }
                 }else{
                     globals.DiaryLog.emotions.push(newAttr);
                 }
                 break;
             case 'Target':
-                if (globals.DiaryLog.targets.some((item: Attr) => item.id === newAttr.id)){
-                    const result = globals.DiaryLog.targets.filter((item: Attr) => item.id == newAttr.id);
+                if (globals.DiaryLog.targets.some((item: Attribute) => item.related_attribute_uuid === newAttr.related_attribute_uuid)){
+                    const result = globals.DiaryLog.targets.filter((item: Attribute) => item.related_attribute_uuid == newAttr.related_attribute_uuid);
                     if (result[0]){
-                        result[0].value = newAttr.value;
+                        result[0] = newAttr;
                     }
                 }else{
                     globals.DiaryLog.targets.push(newAttr);
@@ -54,7 +56,7 @@ const AttrInputs = (props: AttrProps) => {
         }
     }
 
-    const {name, id, type} = props;
+    const {name, uId, type} = props;
     var [curValue, setValue] = useState(0);
     return (
         <View style={styles.container}>
@@ -64,9 +66,13 @@ const AttrInputs = (props: AttrProps) => {
                     value={curValue}
                     onValueChange={(value: number) => {
                         const newAttr = {
-                            id: id,
+                            attribute_uuid: '',
+                            related_attribute_uuid: uId,
                             type: type,
-                            value: value,
+                            rating: value,
+                            date_created: moment().toISOString(),
+                            date_modified: '',
+                            diary_entity: '',
                         }
                         updatelocalAttr(newAttr);
                         setValue(curValue = value);

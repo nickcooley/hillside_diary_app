@@ -28,32 +28,59 @@ import RecordReview from '../screens/Recording/RecordReview';
 import SUDScoreScreen from '../screens/SUDScores/SUDScoreListScreen';
 import RecordSUDScreen from '../screens/SUDScores/RecordSUDScreen';
 import SUDScoreConfirmation from '../screens/SUDScores/SUDScoreConfirmation';
+import RootScreen from '../screens/SignInScreen';
+import { useAuth } from '../contexts/Auth';
+
+type AuthContextData = {
+  authData?: AuthData;
+  loading: boolean;
+  signIn(): Promise<void>;
+  signOut(): void;
+};
+    
+type AuthData = {
+  token: string;
+  email: string;
+  name: string;
+};
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+  
+
+  /**
+   * A root stack navigator is often used for displaying modals on top of all other content.
+   * https://reactnavigation.org/docs/modal
+   */
+  const Stack = createNativeStackNavigator<RootStackParamList>();
+
+  const {authData, loading} = useAuth();
+
+
+  const AppStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="App" component={BottomTabNavigator} options={{ headerShown: false }} />
+        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      </Stack.Navigator>
+    );
+  }
+
+  const AuthStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="Auth" component={RootScreen} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    )
+  }
+  
+  
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? Colors.dark : Colors.light}>
-      <RootNavigator />
+      {authData? <AppStack /> : <AuthStack />}
     </NavigationContainer>
-  );
-}
-
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
-    </Stack.Navigator>
   );
 }
 

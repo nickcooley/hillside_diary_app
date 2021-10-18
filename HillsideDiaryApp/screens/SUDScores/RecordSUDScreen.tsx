@@ -1,18 +1,21 @@
-import React, { useMemo, useState } from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, TouchableWithoutFeedback, Text, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { StyleSheet, Dimensions, SafeAreaView, Text, View } from 'react-native';
 import { Theme, useTheme } from '@react-navigation/native';
 import { Button } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
 import { RecordScoreStackScreenProps } from '../../types';
 import SUDScorePicker from '../../components/sudScorePicker';
-import scoreData from '../../data/scoreData';
 import globals from '../../global/globals';
+import * as SecureStore from 'expo-secure-store';
+import axios from 'axios';
+import { useState } from 'react';
 
 
 export default function RecordSUDScreen({ navigation }: RecordScoreStackScreenProps<'ScoreRecord'>) {
   const theme = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+
+  var [curValue, setValue] = useState(0);
 
 
   const getCurrentDate=()=>{
@@ -34,6 +37,37 @@ export default function RecordSUDScreen({ navigation }: RecordScoreStackScreenPr
   const currentDate = getCurrentDate();
   const currentTime = getCurrentTime();
 
+  async function sendScore(key:string) {
+    let result = await SecureStore.getItemAsync(key);
+    if (result) {
+        const accessTok = "Bearer " + result;
+        var bodyFormData = new FormData();
+        const curDate = moment().toISOString();
+        console.log(curDate);
+        bodyFormData.append('date_added', curDate);
+        bodyFormData.append('score', curValue.toString());
+        axios({
+            method: "post",
+            url: globals.apiCalls.scoreURi,
+            data: bodyFormData,
+            headers: {
+              "Authorization": accessTok,
+              "Content-Type": "multipart/form-data"
+            }
+          })
+            .then((response) => {
+              console.log(response);
+              navigation.navigate('ScoreConfirmed');
+              
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+    } else {
+        alert('No values stored under that key.');
+    }
+}
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Recording at</Text>
@@ -42,11 +76,11 @@ export default function RecordSUDScreen({ navigation }: RecordScoreStackScreenPr
         <Text style={styles.time}>{currentTime}</Text>
       </View>
       <View style={styles.sudContainer}>
-        <SUDScorePicker />
+        <SUDScorePicker curValue={curValue} setValue={setValue} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} title="Submit" onPress={()=>{
-          
+        <Button style={styles.button} title="Submit" onPress={()=>{  
+          sendScore('access')
         }} />
       </View>
     </SafeAreaView>

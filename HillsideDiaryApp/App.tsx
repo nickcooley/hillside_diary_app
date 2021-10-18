@@ -5,34 +5,55 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useLoginService from "./hooks/useLoginService";
 import Navigation from "./navigation";
-import LoginScreen from "./screens/LoginScreen";
 import useColorScheme from "./hooks/useColorScheme";
+import RootScreen from "./screens/SignInScreen";
+import * as SecureStore from 'expo-secure-store';
+import { AuthProvider } from "./contexts/Auth";
 
 const App = () => {
+
   const isLoadingComplete = useCachedResources();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const colorScheme = useColorScheme();
-  const loginHandler = useLoginService;
+  const loginHandler = useLoginService(false);
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    if (isUserLoggedIn) {
-      return (
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
-      );
-    }
-    else {
-      return (
-        <SafeAreaProvider>
-          <LoginScreen loginHandler={loginHandler} controlLoginMethod={setIsUserLoggedIn}/>
-        </SafeAreaProvider>
-      )
+
+  async function getValueFor(key: string) {
+    let result = await SecureStore.getItemAsync(key);
+    if (result) {
+      return result
+    } else {
+      alert('No values stored under that key.');
     }
   }
+
+  // if (!isLoadingComplete) {
+  //   return null;
+  // } else {
+  //   if (isUserLoggedIn) {
+  //     return (
+  //       <SafeAreaProvider>
+  //         <Navigation colorScheme={colorScheme} />
+  //         <StatusBar />
+  //       </SafeAreaProvider>
+  //     );
+  //   }
+  //   else {
+  //     return (
+  //       <SafeAreaProvider>
+  //         <RootScreen loginHandler={loginHandler} controlLoginMethod={setIsUserLoggedIn}/>
+  //       </SafeAreaProvider>
+  //     )
+  //   }
+  // }
+
+  return (
+    <AuthProvider>
+      <Navigation colorScheme={colorScheme} />
+    </AuthProvider>
+  )
+
+
 };
 
 export default App;
